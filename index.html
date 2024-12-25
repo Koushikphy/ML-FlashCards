@@ -1,8 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Content Loader</title>
+    <style>
+      #content-container {
+        padding: 20px;
+        min-height: 200px;
+      }
+      .hide {
+        display: None;
+      }
 
-<h2> ML Cards</h2>
 
-<h3> List of Questions</h3>
-<ul>
-<li><a href="html_output/linear_regression.html">What is Linear Regression</a></li>
+      /* General reset for margins, padding, and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-</ul>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa; /* Light background */
+  color: #333; /* Dark text for readability */
+  line-height: 1.6;
+}
+
+/* Root container */
+#root {
+  width: 90%;
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h2 {
+  text-align: center;
+  color: #4CAF50; /* Green color for the title */
+  font-size: 1.7em;
+  /* margin-bottom: 20px; */
+}
+
+/* Top bar for links */
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #4CAF50;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+#topbar div {
+  font-size: 1em;
+}
+
+#topbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+
+#topbar a:hover {
+  background-color: #45a049; /* Darker green on hover */
+  border-radius: 4px;
+}
+
+/* Container for the list and single item */
+#container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Style for the list section */
+#allList {
+  width: 40%;
+}
+
+#allList h3 {
+  font-size: 1.25em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#qlist {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+#qlist li {
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+#qlist li a {
+  color: #4CAF50;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+#qlist li a:hover {
+  color: #2e8b57; /* Darker green on hover */
+}
+
+/* Style for the single question and answer */
+#single {
+  width: 55%;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+#ques {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+#ans {
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Add a horizontal line with some space */
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #allList, #single {
+    width: 100%;
+  }
+
+  #topbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+    </style>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"]], displayMath: [["$$", "$$"]] },
+      };
+    </script>
+    <script
+      type="text/javascript"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>ML Cards</h2>
+      <div id="topbar">
+
+        <div>
+          <a href="/">Full List</a>
+        </div>
+        <div>
+          <a href="/?file=random">Random</a>
+        </div>
+
+      </div>
+      <div id="container">
+        <div id="allList">
+          <div>
+            <h3>List of Questions</h3>
+          </div>
+          <ul id="qlist"></ul>
+        </div>
+        <div id="single">
+          <div id="ques">
+            What is Logistic Regression
+          </div>
+          <hr />
+          <div id="ans">
+            Logistic regression is ...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // or get these from a master json
+      var allData;
+      const allList = document.getElementById("allList");
+      const single = document.getElementById("single");
+      const ques = document.getElementById("ques");
+      const ans = document.getElementById("ans");
+
+      function fetchCall(url) {
+        return fetch(url).then((response) => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+          }
+          return response.json();
+        });
+      }
+
+      async function fetchData(fileName) {
+        let jsonFilePath;
+
+        // Check if the fileName is "random"
+        if (fileName == "random") {
+          try {
+            const data = await fetchCall(`/jsons/full.json`);
+            const randomIndex = Math.floor(Math.random() * data.length); // Generate a random index
+            jsonFilePath = `/jsons/${data[randomIndex].file}`;
+          } catch (error) {
+            console.error("Error fetching random file data:", error.message);
+            return;
+          }
+        } else {
+          jsonFilePath = `/jsons/${fileName}`;
+        }
+
+        console.log(jsonFilePath);
+
+        // Fetch the JSON file
+        try {
+          const data = await fetchCall(jsonFilePath);
+          // Assuming `ques` and `ans` are DOM elements
+          ques.innerHTML = data["question"].replace(/\\\\/g, "\\");
+          ans.innerHTML = data["answer"].replace(/\\\\/g, "\\");
+          MathJax.typesetPromise([ques, ans]).catch((err) =>
+            console.error("MathJax rendering failed: ", err)
+          );
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const fileName = urlParams.get("file");
+
+      if (fileName) {
+        allList.classList.add("hide");
+        single.classList.remove("hide");
+        fetchData(fileName);
+      } else {
+        allList.classList.remove("hide");
+        single.classList.add("hide");
+
+        fetchCall(`/jsons/full.json`).then((data) => {
+          document.getElementById("qlist").innerHTML = data
+            .map(
+              (elem) =>
+                `<li><a href="?file=${elem.file}">${elem.question}</a></li>`
+            )
+            .join("\n");
+        });
+      }
+    </script>
+  </body>
+</html>

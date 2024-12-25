@@ -1,11 +1,12 @@
 from glob import glob
 from pathlib import Path
-
+import json
 
 files = glob('cards/*.md')
-output_html_folder = Path("html_output")
-mdLinks, htmlLinks = '', ''
+output_json_folder = Path("jsons")
+mdLinks = ''
 
+jsonLinks = []
 
 # create html files 
 for file in files:
@@ -14,28 +15,22 @@ for file in files:
     question = question.replace('###','').strip()
     answer = answer.strip()
 
-    mdLinks += f"- [{question}]({file})"
+    mdLinks += f"- [{question}]({file})\n"
+
     # create single html file
     
     file = Path(file)
-    filePath = output_html_folder/file.with_suffix('.html').name
-    htmlLinks +=f'<li><a href="{filePath}">{question}</a></li>\n'
-    with open(filePath,'w') as f:
-        f.write(f"""
-<!DOCTYPE html>
-<html>
-<head>
-<title>{file.stem.replace('_',' ').title()}</title>
-<script type="text/javascript">window.MathJax = {{tex: {{inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}}}};</script>
-<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-</head>
-<body>
-<h3>{question}</h3>
-<p>{answer}</p>
-</body>
-</html>
-""")
+    filePath = output_json_folder/file.with_suffix('.json').name
+    jsonLinks.append({
+        "question":question,
+        "file": filePath.name
+    })
+
+    with open(filePath,'w', encoding="utf-8") as f:
+        json.dump({
+            "question":question,
+            "answer": answer
+        }, f, ensure_ascii=False, indent=4)
 
 # global markdown
 with open('Readme.md','w') as f:
@@ -46,17 +41,10 @@ with open('Readme.md','w') as f:
 {mdLinks}
 """)
 
-
 #global html
-with open('index.html','w') as f:
-    f.write(f"""
-<h2> ML Cards</h2>
+with open(f'{output_json_folder}/full.json','w', encoding="utf-8") as f:
+    json.dump(jsonLinks, f, ensure_ascii=False, indent=4)
 
-<h3> List of Questions</h3>
-<ul>
-{htmlLinks}
-</ul>
-""")
 
 
 

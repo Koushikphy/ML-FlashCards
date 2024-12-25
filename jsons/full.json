@@ -1,0 +1,10 @@
+[
+    {
+        "question": "What is Linear Regression",
+        "file": "linear_regression.json"
+    },
+    {
+        "question": "What is Logistic Regression",
+        "file": "logistic_regression.json"
+    }
+]
