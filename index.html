@@ -143,7 +143,7 @@
         flex:1;
         margin-bottom: 20px;
         color: #555;
-        overflow-y: scroll; /* Enable scrolling when content overflows */
+        overflow-y: auto; /* Enable scrolling when content overflows */
         font-size: 1rem;
       }
 
@@ -183,7 +183,7 @@
         text-decoration: underline;
       }
       .hide {
-        display: None;
+        display: None !important;
       }
     </style>
     <script type="text/javascript">
@@ -199,7 +199,7 @@
   </head>
   <body>
     <div id="root">
-      <h2>ML Cards</h2>
+      <h2>ML FlashCards</h2>
       <div id="topbar">
         <div>
           <a href="#" id="hLink">Full List</a>
@@ -235,16 +235,17 @@
       <footer>
         Found an issue or want to contribute, visit
 
-        <a href="https://github.com/Koushikphy/ML-cards">
-          <object data="./assets/github.svg"></object>/ML-cards</a
+        <a href="https://github.com/Koushikphy/ML-FlashCards">
+          <object data="./assets/github.svg"></object>/ML-FlashCards</a
         >
       </footer>
     </div>
 
     <script>
       // or get these from a master json
-      const root = "https://koushikphy.github.io/ML-cards/";
+      // const root = "https://koushikphy.github.io/ML-FlashCards/";
       // const root = "http://127.0.0.1:8000/"
+      const root = "http://192.168.23.72:8000/"
       var allData,
         startX = 0,
         endX = 0;
@@ -260,13 +261,14 @@
         .getElementById("rLink")
         .setAttribute("href", `${root}/?file=random`);
 
+
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
           // Right arrow key
-          prev.click();
+          next.click();
         } else if (event.key === "ArrowLeft") {
           // Right arrow key
-          next.click();
+          prev.click();
         }
       });
 
@@ -318,7 +320,7 @@
           // Assuming `ques` and `ans` are DOM elements
           ques.innerHTML = info["question"].replace(/\\\\/g, "\\");
           ans.innerHTML = info["answer"].replace(/\\\\/g, "\\");
-          console.log(info);
+          // console.log(info);
           prev.setAttribute("href", `${root}/?file=${info["prev"]}`);
           next.setAttribute("href", `${root}/?file=${info["next"]}`);
           // prev.href = `/?file=${info["prev"]}`
@@ -330,6 +332,7 @@
           console.error("Error:", error.message);
         }
       }
+
 
       const urlParams = new URLSearchParams(window.location.search);
       const fileName = urlParams.get("file");
