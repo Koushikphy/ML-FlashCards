@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -37,3 +37,5 @@ jobs:
         git add . 
         git commit -m "Auto-generated json files" || echo "No changes to commit"
         git push origin main  # Push changes back to the repository.
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
