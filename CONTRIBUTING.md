@@ -1,5 +1,4 @@
-### How to Contribute
-
+### Adding new cards
 1. Fork this repo.
 2. Add your question answer as a single markdown file in the `cards` folder. The file format must be like this
     ```markdown

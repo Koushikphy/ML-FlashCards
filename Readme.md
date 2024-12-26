@@ -5,7 +5,9 @@ Providing ML knowledge in byte-sized flashcards, this repository is designed to 
 
 
 ### 🔍 How to Use
-Visit [https://koushikphy.github.io/ML-FlashCards](https://koushikphy.github.io/ML-FlashCards).  
+1. Visit [https://koushikphy.github.io/ML-FlashCards](https://koushikphy.github.io/ML-FlashCards).  
+2. Go through the [List of Questions](https://koushikphy.github.io/ML-FlashCards) or open some [Random](https://koushikphy.github.io/ML-FlashCards//?file=random) card.
+3. Go to previous or next card by pressing/swiping ⬅️/ ➡️
 
 
 
@@ -29,9 +31,10 @@ Check [CONTRIBUTING.md](CONTRIBUTING.md).
 </details>
 
 <!-- LoQ -->
+
 ### 👥 FAQ
 <details>
-<!-- LoQ -->
+
   <summary>FAQs</summary>
 
 </details>
