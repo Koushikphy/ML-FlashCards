@@ -1,0 +1,6 @@
+{
+    "question": "<p>Central Limit Theorem</p>",
+    "answer": "<p>The Central Limit Theorem states that the sampling distribution of <strong>the sample mean (or sum) approaches a normal distribution</strong> as the sample size increases, regardless of the distribution of the population from which the samples are drawn. </p>",
+    "prev": "logistic_regression",
+    "next": "law_large"
+}
