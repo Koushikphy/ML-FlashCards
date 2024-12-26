@@ -54,8 +54,9 @@
         /* font-size: 1.75rem; */
         margin-bottom: 10px;
       }
-      #brand{
-        color: black;text-align: right;
+      #brand {
+        color: black;
+        text-align: right;
         font-style: italic;
         font-size: 0.9em;
         margin: 0;
@@ -114,7 +115,7 @@
 
       #qlist {
         /* list-style: none; */
-        margin:0 0 0 1.25em
+        margin: 0 0 0 1.25em;
       }
 
       #qlist li {
@@ -148,7 +149,7 @@
       }
 
       #ans {
-        flex:1;
+        flex: 1;
         margin-bottom: 20px;
         color: #555;
         overflow-y: auto; /* Enable scrolling when content overflows */
@@ -211,7 +212,8 @@
         <h2>ML FlashCards</h2>
         <div id="brand">
           <a href="https://github.com/Koushikphy/ML-FlashCards">
-            <object data="./assets/github.svg"></object>/ML-FlashCards</a>
+            <object data="./assets/github.svg"></object>/ML-FlashCards</a
+          >
         </div>
       </div>
       <div id="topbar">
@@ -250,8 +252,11 @@
 
     <script>
       // or get these from a master json
-      const root = "https://koushikphy.github.io/ML-FlashCards/";
-      // const root = "http://127.0.0.1:8000/"
+
+      const root =
+        window.location.hostname === "127.0.0.1"
+          ? "http://127.0.0.1:8000/"
+          : "https://koushikphy.github.io/ML-FlashCards/";
       var allData,
         startX = 0,
         endX = 0;
@@ -266,7 +271,6 @@
       document
         .getElementById("rLink")
         .setAttribute("href", `${root}/?file=random`);
-
 
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
@@ -283,7 +287,7 @@
       });
 
       document.addEventListener("touchend", (event) => {
-        // event.preventDefault(); 
+        // event.preventDefault();
         endX = event.changedTouches[0].clientX;
         if (startX < endX - 50) {
           // Swipe left (threshold: 50px)
@@ -338,7 +342,6 @@
           console.error("Error:", error.message);
         }
       }
-
 
       const urlParams = new URLSearchParams(window.location.search);
       const fileName = urlParams.get("file");
