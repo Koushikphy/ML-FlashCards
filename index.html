@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ML FlashCards</title>
     <style>
-      /* General reset for consistent styling */
       body,
       h2,
       h3,
@@ -27,14 +26,16 @@
         font-size: 16px;
         display: flex;
         flex-direction: column;
-        height: 100vh; /* Ensure the body fills the screen height */
+        height: 100dvh; /*Dynamic Viewport Height*/
         font-family: "Times New Roman", Times, serif;
+        padding: 0 9px;
       }
 
+
       #root {
-        flex: 1; /* Makes #root fill the available space */
-        min-width: 50%;
-        max-width: 900px;
+        flex: 1; 
+        width: 800px;
+        max-width: 100%;
         margin: 0 auto;
         background: #fff;
         border: 1px solid #ddd;
@@ -45,14 +46,13 @@
         flex-direction: column;
       }
 
-      /* Header styling */
+
       #banner {
         background-color: #007bff;
         color: #fff;
         text-align: center;
-        padding: 10px;
-        /* font-size: 1.75rem; */
-        margin-bottom: 10px;
+        padding: 0.5em;
+        height: 5em;
       }
       #brand {
         color: black;
@@ -64,7 +64,6 @@
         line-height: 0.9em;
       }
 
-      /* Top bar styling */
       #topbar {
         display: flex;
         justify-content: space-between;
@@ -82,15 +81,13 @@
       }
 
       #topbar a:hover {
-        /* text-decoration: underline; */
-        background-color: #dddddd; /* Darker green on hover */
+        background-color: #dddddd; 
         border-radius: 4px;
       }
 
-      /* Main container */
       #container {
         display: flex;
-        flex: 1; /* Allow container to expand */
+        flex: 1;
         gap: 20px;
         padding: 20px;
         border: 1px solid #ddd;
@@ -98,12 +95,9 @@
         overflow: auto;
       }
 
-      /* List styling */
       #allList {
         flex: 1;
         background-color: #f9f9f9;
-        /* border: 1px solid #ddd;
-    border-radius: 5px; */
         padding: 10px;
       }
 
@@ -114,7 +108,6 @@
       }
 
       #qlist {
-        /* list-style: none; */
         margin: 0 0 0 1.25em;
       }
 
@@ -131,7 +124,6 @@
         text-decoration: underline;
       }
 
-      /* Single question and answer section */
       #single {
         flex: 1;
         display: flex;
@@ -144,22 +136,23 @@
       #ques {
         border-bottom: 1px solid black;
         font-weight: bold;
-        font-size: 1.4rem;
-        margin-bottom: 20px;
+        font-size: 1.25em;
+        margin-bottom: 1em;
+        min-height: 3em;
       }
 
       #ans {
         flex: 1;
         margin-bottom: 20px;
         color: #555;
-        overflow-y: auto; /* Enable scrolling when content overflows */
+        overflow-y: auto; 
         font-size: 1rem;
       }
 
       #navbar {
         display: flex;
         justify-content: space-between;
-        margin-top: 10px;
+        margin-top: 1em;
       }
 
       #navbar a {
@@ -172,28 +165,10 @@
         text-decoration: underline;
       }
 
-      /* Footer styling */
-      footer {
-        font-style: italic;
-        text-align: center;
-        padding: 10px;
-        background-color: #f1f1f1;
-        border-top: 1px solid #ddd;
-        margin-top: 10px;
-        flex-shrink: 0; /* Ensure footer stays at the bottom */
-      }
-
-      footer a {
-        color: #007bff;
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
       .hide {
         display: None !important;
       }
+      
     </style>
     <script type="text/javascript">
       window.MathJax = {
@@ -207,13 +182,14 @@
     ></script>
   </head>
   <body>
+
     <div id="root">
       <div id="banner">
         <h2>ML FlashCards</h2>
         <div id="brand">
-          <a href="https://github.com/Koushikphy/ML-FlashCards">
-            <object data="./assets/github.svg"></object>/ML-FlashCards</a
-          >
+          <a href="https://github.com/Koushikphy/ML-FlashCards">Follow on</a>
+          <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" width="16" height="16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+          </svg>
         </div>
       </div>
       <div id="topbar">
@@ -253,47 +229,42 @@
     <script>
       // or get these from a master json
 
-      const root =
-        window.location.hostname === "127.0.0.1"
-          ? "http://127.0.0.1:8000/"
-          : "https://koushikphy.github.io/ML-FlashCards/";
-      var allData,
-        startX = 0,
-        endX = 0;
       const allList = document.getElementById("allList");
       const single = document.getElementById("single");
       const ques = document.getElementById("ques");
       const ans = document.getElementById("ans");
       const prev = document.getElementById("prev");
       const next = document.getElementById("next");
+      const root = window.location.origin + window.location.pathname;
+      const urlParams = new URLSearchParams(window.location.search);
+      var allData,
+        startX = 0,
+        endX = 0;
 
       document.getElementById("hLink").setAttribute("href", root);
       document
         .getElementById("rLink")
         .setAttribute("href", `${root}/?file=random`);
 
+      // Event listners for left/right navigation keys
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
-          // Right arrow key
           next.click();
         } else if (event.key === "ArrowLeft") {
-          // Right arrow key
           prev.click();
         }
       });
 
+      // Event listners for left/right swiping
       document.addEventListener("touchstart", (event) => {
         startX = event.touches[0].clientX;
       });
 
       document.addEventListener("touchend", (event) => {
-        // event.preventDefault();
         endX = event.changedTouches[0].clientX;
         if (startX < endX - 50) {
-          // Swipe left (threshold: 50px)
           prev.click();
         } else if (startX > endX + 50) {
-          // Swipe right (threshold: 50px)
           next.click();
         }
       });
@@ -313,8 +284,8 @@
         // Check if the fileName is "random"
         if (fileName == "random") {
           try {
-            const data = await fetchCall(`${root}/jsons/full.json`);
-            const randomIndex = Math.floor(Math.random() * data.length); // Generate a random index
+            let data = await fetchCall(`${root}/jsons/full.json`);
+            let randomIndex = Math.floor(Math.random() * data.length); // Generate a random index
             jsonFilePath = `${root}/jsons/${data[randomIndex].file}.json`;
           } catch (error) {
             console.error("Error:", error.message);
@@ -326,7 +297,7 @@
 
         // Fetch the JSON file
         try {
-          const info = await fetchCall(jsonFilePath);
+          let info = await fetchCall(jsonFilePath);
           // Assuming `ques` and `ans` are DOM elements
           ques.innerHTML = info["question"].replace(/\\\\/g, "\\");
           ans.innerHTML = info["answer"].replace(/\\\\/g, "\\");
@@ -343,7 +314,6 @@
         }
       }
 
-      const urlParams = new URLSearchParams(window.location.search);
       const fileName = urlParams.get("file");
 
       if (fileName) {
