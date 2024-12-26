@@ -235,7 +235,7 @@
       const ans = document.getElementById("ans");
       const prev = document.getElementById("prev");
       const next = document.getElementById("next");
-      const root = window.location.origin + window.location.pathname;
+      const root = window.location.origin + window.location.pathname.replace(/\/+$/, '');
       const urlParams = new URLSearchParams(window.location.search);
       var allData,
         startX = 0,
@@ -281,9 +281,8 @@
       async function fetchData(fileName) {
         let jsonFilePath;
 
-        // Check if the fileName is "random"
         if (fileName == "random") {
-          try {
+          try { // fetch full list and randomly choose a single one
             let data = await fetchCall(`${root}/jsons/full.json`);
             let randomIndex = Math.floor(Math.random() * data.length); // Generate a random index
             jsonFilePath = `${root}/jsons/${data[randomIndex].file}.json`;
@@ -294,18 +293,17 @@
         } else {
           jsonFilePath = `${root}/jsons/${fileName}.json`;
         }
-
-        // Fetch the JSON file
+        // Now fetch a particular question-answer
         try {
           let info = await fetchCall(jsonFilePath);
-          // Assuming `ques` and `ans` are DOM elements
           ques.innerHTML = info["question"].replace(/\\\\/g, "\\");
           ans.innerHTML = info["answer"].replace(/\\\\/g, "\\");
-          // console.log(info);
+          // Latex syntax are modified to double slash during conversion 
+          // also json can not store with single slach
+          // but mathjax can not render those 
+          // so they are modified back to single slash
           prev.setAttribute("href", `${root}/?file=${info["prev"]}`);
           next.setAttribute("href", `${root}/?file=${info["next"]}`);
-          // prev.href = `/?file=${info["prev"]}`
-          // next.next = `/?file=${info["next"]}`
           MathJax.typesetPromise([ques, ans]).catch((err) =>
             console.error("MathJax rendering failed: ", err)
           );
@@ -316,11 +314,11 @@
 
       const fileName = urlParams.get("file");
 
-      if (fileName) {
+      if (fileName) { // render a single question-answer
         allList.classList.add("hide");
         single.classList.remove("hide");
         fetchData(fileName);
-      } else {
+      } else { // render the full question list
         allList.classList.remove("hide");
         single.classList.add("hide");
 
