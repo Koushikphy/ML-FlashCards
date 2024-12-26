@@ -198,10 +198,10 @@
       <h2>ML Cards</h2>
       <div id="topbar">
         <div>
-          <a href="/">Full List</a>
+          <a href="#" id="hLink">Full List</a>
         </div>
         <div>
-          <a href="/?file=random">Random</a>
+          <a href="#" id="rLink">Random</a>
         </div>
       </div>
       <div id="container">
@@ -240,13 +240,22 @@
 
     <script>
       // or get these from a master json
-      var allData, startX = 0, endX = 0;;
+      const root = "https://koushikphy.github.io/ML-cards/";
+      // const root = "http://127.0.0.1:8000/"
+      var allData,
+        startX = 0,
+        endX = 0;
       const allList = document.getElementById("allList");
       const single = document.getElementById("single");
       const ques = document.getElementById("ques");
       const ans = document.getElementById("ans");
       const prev = document.getElementById("prev");
       const next = document.getElementById("next");
+
+      document.getElementById("hLink").setAttribute("href", root);
+      document
+        .getElementById("rLink")
+        .setAttribute("href", `${root}/?file=random`);
 
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
@@ -257,8 +266,6 @@
           prev.click();
         }
       });
-
-
 
       document.addEventListener("touchstart", (event) => {
         startX = event.touches[0].clientX;
@@ -290,15 +297,15 @@
         // Check if the fileName is "random"
         if (fileName == "random") {
           try {
-            const data = await fetchCall(`/jsons/full.json`);
+            const data = await fetchCall(`${root}/jsons/full.json`);
             const randomIndex = Math.floor(Math.random() * data.length); // Generate a random index
-            jsonFilePath = `/jsons/${data[randomIndex].file}.json`;
+            jsonFilePath = `${root}/jsons/${data[randomIndex].file}.json`;
           } catch (error) {
             console.error("Error:", error.message);
             return;
           }
         } else {
-          jsonFilePath = `/jsons/${fileName}.json`;
+          jsonFilePath = `${root}/jsons/${fileName}.json`;
         }
 
         // Fetch the JSON file
@@ -308,8 +315,8 @@
           ques.innerHTML = info["question"].replace(/\\\\/g, "\\");
           ans.innerHTML = info["answer"].replace(/\\\\/g, "\\");
           console.log(info);
-          prev.setAttribute("href", `/?file=${info["prev"]}`);
-          next.setAttribute("href", `/?file=${info["next"]}`);
+          prev.setAttribute("href", `${root}/?file=${info["prev"]}`);
+          next.setAttribute("href", `${root}/?file=${info["next"]}`);
           // prev.href = `/?file=${info["prev"]}`
           // next.next = `/?file=${info["next"]}`
           MathJax.typesetPromise([ques, ans]).catch((err) =>
@@ -331,7 +338,7 @@
         allList.classList.remove("hide");
         single.classList.add("hide");
 
-        fetchCall(`/jsons/full.json`).then((data) => {
+        fetchCall(`${root}/jsons/full.json`).then((data) => {
           document.getElementById("qlist").innerHTML = data
             .map(
               (elem) =>
