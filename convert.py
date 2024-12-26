@@ -18,9 +18,6 @@ qBlock = text.split('<!-- LoQ -->')[1]
 qList = re.findall(r'\[([^\]]+)\]\(cards/([^)]+)\.md\)', qBlock)
 
 
-qLen = len(qList)
-
-
 for n,(ques, file) in enumerate(qList):
     
     jsonLinks.append({
@@ -37,7 +34,7 @@ for n,(ques, file) in enumerate(qList):
             "question":markdown.markdown(question),
             "answer": markdown.markdown(answer),
             "prev":qList[n-1 if n>0 else 0][1] ,
-            "next":qList[n+1 if n<qLen-1 else n][1] 
+            "next":qList[n+1 if n<len(qList)-1 else n][1] 
         }, f, ensure_ascii=False, indent=4)
 
 

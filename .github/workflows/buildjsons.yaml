@@ -35,7 +35,7 @@ jobs:
     - name: Commit and Push Changes
       run: |
         git add . 
-        git commit -m "Auto-generated json files" || echo "No changes to commit"
+        git commit -m "Build json files" || echo "No changes to commit"
         git push origin main  # Push changes back to the repository.
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
