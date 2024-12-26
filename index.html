@@ -276,7 +276,7 @@
       });
 
       document.addEventListener("touchend", (event) => {
-        event.preventDefault(); 
+        // event.preventDefault(); 
         endX = event.changedTouches[0].clientX;
         if (startX < endX - 50) {
           // Swipe left (threshold: 50px)
