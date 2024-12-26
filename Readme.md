@@ -5,12 +5,12 @@ Providing ML knowledge in byte-sized flashcards, this repository is designed to 
 
 
 ### 🔍 How to Use
-Visit [https://koushikphy.github.io/ML-cards](https://koushikphy.github.io/ML-cards).
+Visit [https://koushikphy.github.io/ML-cards](https://koushikphy.github.io/ML-cards).  
 
 
 
 ### 🤝 How to Contribute
-Check ([CONTRIBUTING.md](CONTRIBUTING.md)).
+Check [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
 
