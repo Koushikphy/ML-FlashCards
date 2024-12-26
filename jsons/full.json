@@ -1,10 +1,22 @@
 [
     {
         "question": "What is Linear Regression",
-        "file": "linear_regression.json"
+        "file": "linear_regression"
+    },
+    {
+        "question": "Assumptions of Linear Regression",
+        "file": "linear_reg_assumptions"
     },
     {
         "question": "What is Logistic Regression",
-        "file": "logistic_regression.json"
+        "file": "logistic_regression"
+    },
+    {
+        "question": "Central Limit Theorem",
+        "file": "central_limit"
+    },
+    {
+        "question": "Law of large numbers",
+        "file": "law_large"
     }
 ]

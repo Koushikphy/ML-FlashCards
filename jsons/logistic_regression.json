@@ -1,4 +1,6 @@
 {
-    "question": "What is Logistic Regression",
-    "answer": "Logistic regression is ....... $\\delta$ $$\\gamma$$"
+    "question": "<p>What is Logistic Regression</p>",
+    "answer": "<p>Logistic regression is ....... $\\delta$ $$\\gamma$$</p>",
+    "prev": "linear_reg_assumptions",
+    "next": "central_limit"
 }

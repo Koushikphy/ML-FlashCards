@@ -1,4 +1,6 @@
 {
-    "question": "What is Linear Regression",
-    "answer": "Linear regression is ....... $\\alpha$ $$\\beta$$"
+    "question": "<p>What is Linear Regression</p>",
+    "answer": "<p>Linear regression is ....... $\\alpha$ $$\\beta$$</p>",
+    "prev": "linear_regression",
+    "next": "linear_reg_assumptions"
 }

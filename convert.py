@@ -1,50 +1,47 @@
-from glob import glob
-from pathlib import Path
+import os 
+import re
 import json
+import markdown
 
-files = glob('cards/*.md')
-output_json_folder = Path("jsons")
-mdLinks = ''
+
+jsonFol ="jsons"
+os.makedirs(jsonFol, exist_ok=True)
 
 jsonLinks = []
 
-# create html files 
-for file in files:
-    with open(file, 'r', encoding='utf-8') as f:
-        question,answer = f.read().split('---')
-    question = question.replace('###','').strip()
-    answer = answer.strip()
 
-    mdLinks += f"- [{question}]({file})\n"
+with open('Readme.md') as f:
+    text = f.read()
 
-    # create single html file
+
+qBlock = text.split('<!-- LoQ -->')[1]
+qList = re.findall(r'\[([^\]]+)\]\(cards/([^)]+)\.md\)', qBlock)
+
+
+qLen = len(qList)
+
+
+for n,(ques, file) in enumerate(qList):
     
-    file = Path(file)
-    filePath = output_json_folder/file.with_suffix('.json').name
     jsonLinks.append({
-        "question":question,
-        "file": filePath.name
+        "question":ques,
+        "file": file
     })
 
-    with open(filePath,'w', encoding="utf-8") as f:
+    with open(f"cards/{file}.md", 'r', encoding='utf-8') as f:
+        question,answer = f.read().split('---')
+    question = question.replace('###','').strip()
+
+    with open(f"{jsonFol}/{file}.json",'w', encoding="utf-8") as f:
         json.dump({
-            "question":question,
-            "answer": answer
+            "question":markdown.markdown(question),
+            "answer": markdown.markdown(answer),
+            "prev":qList[n-1 if n>0 else 0][1] ,
+            "next":qList[n+1 if n<qLen-1 else n][1] 
         }, f, ensure_ascii=False, indent=4)
 
-# global markdown
-with open('Readme.md','w') as f:
-    f.write(f"""
-## ML Cards
 
-### List of Questions
-{mdLinks}
-""")
-
-#global html
-with open(f'{output_json_folder}/full.json','w', encoding="utf-8") as f:
+with open(f'{jsonFol}/full.json','w', encoding="utf-8") as f:
     json.dump(jsonLinks, f, ensure_ascii=False, indent=4)
-
-
 
 
