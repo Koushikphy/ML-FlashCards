@@ -84,9 +84,9 @@
         flex: 1; /* Allow container to expand */
         gap: 20px;
         padding: 20px;
-        overflow-y: auto; /* Enable scrolling when content overflows */
         border: 1px solid #ddd;
         border-radius: 5px;
+        overflow: auto;
       }
 
       /* List styling */
@@ -105,11 +105,12 @@
       }
 
       #qlist {
-        list-style: none;
+        /* list-style: none; */
+        margin:0 0 0 1.25em
       }
 
       #qlist li {
-        margin-bottom: 8px;
+        margin-bottom: 0px;
       }
 
       #qlist li a {
@@ -123,30 +124,33 @@
 
       /* Single question and answer section */
       #single {
-        flex: 2;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         background-color: #fff;
-        /* border: 1px solid #ddd;
-    border-radius: 5px; */
         padding: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       #ques {
+        border-bottom: 1px solid black;
         font-weight: bold;
         font-size: 1.4rem;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
 
       #ans {
+        flex:1;
         margin-bottom: 20px;
         color: #555;
+        overflow-y: scroll; /* Enable scrolling when content overflows */
         font-size: 1rem;
       }
 
       #navbar {
         display: flex;
         justify-content: space-between;
-        margin-top: 50px;
+        margin-top: 10px;
       }
 
       #navbar a {
@@ -163,10 +167,10 @@
       footer {
         font-style: italic;
         text-align: center;
-        padding: 10px 20px;
+        padding: 10px;
         background-color: #f1f1f1;
         border-top: 1px solid #ddd;
-        margin-top: 20px;
+        margin-top: 10px;
         flex-shrink: 0; /* Ensure footer stays at the bottom */
       }
 
@@ -213,7 +217,6 @@
         </div>
         <div id="single">
           <div id="ques"></div>
-          <hr />
           <div id="ans"></div>
           <div id="navbar">
             <div>
@@ -260,10 +263,10 @@
       document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
           // Right arrow key
-          next.click();
+          prev.click();
         } else if (event.key === "ArrowLeft") {
           // Right arrow key
-          prev.click();
+          next.click();
         }
       });
 
@@ -272,13 +275,14 @@
       });
 
       document.addEventListener("touchend", (event) => {
+        event.preventDefault(); 
         endX = event.changedTouches[0].clientX;
         if (startX < endX - 50) {
-          // Swipe right (threshold: 50px)
-          next.click();
-        } else if (startX > endX - 50) {
           // Swipe left (threshold: 50px)
           prev.click();
+        } else if (startX > endX + 50) {
+          // Swipe right (threshold: 50px)
+          next.click();
         }
       });
 
