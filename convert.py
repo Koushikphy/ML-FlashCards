@@ -10,7 +10,7 @@ os.makedirs(jsonFol, exist_ok=True)
 jsonLinks = []
 
 
-with open('Readme.md') as f:
+with open('Readme.md', encoding="utf8") as f:
     text = f.read()
 
 
@@ -34,8 +34,8 @@ for n,(ques, file) in enumerate(qList):
         json.dump({
             "question":markdown.markdown(question),
             "answer": markdown.markdown(answer),
-            "prev":qList[n-1 if n>0 else 0][1] ,
-            "next":qList[n+1 if n<len(qList)-1 else n][1] 
+            "prev":qList[n-1][1] if n>0 else '',
+            "next":qList[n+1][1] if n<len(qList)-1 else '' 
         }, f, ensure_ascii=False, indent=4)
 
 

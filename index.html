@@ -101,9 +101,9 @@
 
       document.addEventListener("touchend", (event) => {
         endX = event.changedTouches[0].clientX;
-        if (startX < endX - 50) {
+        if (startX < endX - 150) { //<- swipe distance
           prev.click();
-        } else if (startX > endX + 50) {
+        } else if (startX > endX + 150) {
           next.click();
         }
       });
@@ -165,9 +165,10 @@
           document.getElementById("qlist").innerHTML = data
             .map(
               (elem) =>
-                `<li><a href="?file=${elem.file}">${elem.question}</a></li>`
+                `<li><a href="${root}/?file=${elem.file}">${elem.question}</a></li>`
             )
             .join("\n");
+            next.setAttribute("href", `${root}/?file=${data[0]["file"]}`);
         });
       }
     </script>
