@@ -12,6 +12,18 @@
         "file": "logistic_regression"
     },
     {
+        "question": "Bias-Variance tradeoff",
+        "file": "bias_variance_tradeoff"
+    },
+    {
+        "question": "Confusion Matrix, Precision & Recall",
+        "file": "confusion_matrix"
+    },
+    {
+        "question": "ROC Curve & AUC",
+        "file": "roc_aoc"
+    },
+    {
         "question": "Central Limit Theorem",
         "file": "central_limit"
     },
