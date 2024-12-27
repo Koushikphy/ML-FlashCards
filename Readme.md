@@ -43,6 +43,6 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 <summary>FAQs</summary>
 
 
-1. **Why create this? Aren't there already plenty of ML tutorials available online?**
+1. **Why create this? Aren't there already plenty of ML tutorials available online?**  
    Absolutely! While it's true that many ML resources exist, I created this repository as my personal knowledge base - an easily accessible, bite-sized reference for quick reviews and self-learning.
 </details>

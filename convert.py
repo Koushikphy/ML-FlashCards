@@ -26,7 +26,8 @@ for n,(ques, file) in enumerate(qList):
     })
 
     with open(f"cards/{file}.md", 'r', encoding='utf-8') as f:
-        question,answer = f.read().split('---')
+        question,answer = f.read().replace('../assets','./assets').split('---')
+        #^ For html `assets` path must be on top level
     question = question.replace('###','').strip()
 
     with open(f"{jsonFol}/{file}.json",'w', encoding="utf-8") as f:
