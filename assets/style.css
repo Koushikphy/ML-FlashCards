@@ -24,6 +24,9 @@ body {
   padding: 0 5px;
 }
 
+h2{
+  font-size: 1.25em;
+}
 
 #root {
   flex: 1; 
@@ -45,7 +48,6 @@ body {
   color: #fff;
   text-align: center;
   padding: 0.5em;
-  height: 5em;
 }
 #brand {
   color: black;
@@ -60,10 +62,11 @@ body {
 #topbar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: .25em 1em;
   background-color: #f1f1f1;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 #topbar a {

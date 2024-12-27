@@ -7,7 +7,7 @@ Providing ML knowledge in byte-sized flashcards, this repository is designed to 
 
 ### 🔍 How to Use
 - **Access the Flashcards:** Visit [https://koushikphy.github.io/ML-FlashCards](https://koushikphy.github.io/ML-FlashCards).  
-- **Explore Questions:**  Browse through the [List of Questions](https://koushikphy.github.io/ML-FlashCards) or  dive straight into a [Random Card](https://koushikphy.github.io/ML-FlashCards//?file=random).
+- **Explore Topics:**  Browse through the [List of Topics](https://koushikphy.github.io/ML-FlashCards) or  dive straight into a [Random Card](https://koushikphy.github.io/ML-FlashCards//?file=random).
 - **Navigate Easily:** Move between cards effortlessly by pressing or swiping ⬅️ (left) or ➡️ (right) for the next card.
 
 
@@ -19,10 +19,10 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 
 
 
-### 💡 List of Questions
+### 💡 List of Topics
 <details>
 <!-- LoQ -->
-  <summary>List of Questions</summary>
+  <summary>List of Topics</summary>
 
 - [What is Linear Regression](cards/linear_regression.md)
 - [Assumptions of Linear Regression](cards/linear_reg_assumptions.md)

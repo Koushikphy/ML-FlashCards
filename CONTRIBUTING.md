@@ -8,7 +8,7 @@
 
     <Answer>
     ```
-3. Update the [List of Questions](https://github.com/Koushikphy/ML-FlashCards?tab=readme-ov-file#-list-of-questions) in the [Readme.md](Readme.md).
+3. Update the [List of Topics](https://github.com/Koushikphy/ML-FlashCards?tab=readme-ov-file#-list-of-topics) in the [Readme.md](Readme.md).
 4. Make a pull request.
 
 

@@ -11,4 +11,4 @@ A confusion matrix is a table used to evaluate a classification model's performa
 Precision and recall can be perfectly separable when the data is perfectly separable. These metrics are commonly used in evaluating binary classification models but can be extended to multi-class classification by averaging over all classes or using weighted averages.
 
 
-![alt text](../assets/images/confusionMatrxiUpdated.jpg)
+![Confusion Matrix](../assets/images/confusionMatrxiUpdated.jpg)
