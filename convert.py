@@ -4,6 +4,10 @@ import json
 import markdown
 
 
+# 1. Read the readme.md between the tage <!-- LoQ --> to read the list of cards.
+# 2. Create individual jsons for each of the cards
+# 3. Create a full.json with all the topics and json path
+
 jsonFol ="jsons"
 os.makedirs(jsonFol, exist_ok=True)
 

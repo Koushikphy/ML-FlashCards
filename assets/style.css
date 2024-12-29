@@ -143,7 +143,7 @@ h2{
 
 #ans {
   flex: 1;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   padding-right: 3px;
   color: #555;
   overflow-y: auto; 
@@ -190,4 +190,17 @@ border-radius: 1em;
 #ans img{
   width: 600px;
   max-width: 100%;
+}
+
+
+#banner, #topbar {
+  transition: transform 0.2s ease-in-out, max-height 0.2s ease-in-out, padding 0.2s ease-in-out, margin 0.2s ease-in-out;
+  max-height: 50%;
+}
+
+#banner.hidden, #topbar.hidden {
+  max-height: 0; 
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
