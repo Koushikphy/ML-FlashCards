@@ -12,12 +12,28 @@
         "file": "logistic_regression"
     },
     {
+        "question": "Overfit & Underfit",
+        "file": "overfit_underfit"
+    },
+    {
         "question": "Bias-Variance tradeoff",
         "file": "bias_variance_tradeoff"
     },
     {
+        "question": "Regularization",
+        "file": "regularization"
+    },
+    {
         "question": "Confusion Matrix, Precision & Recall",
         "file": "confusion_matrix"
+    },
+    {
+        "question": "Decision Trees",
+        "file": "decision_trees"
+    },
+    {
+        "question": "Random Forest",
+        "file": "random_forest"
     },
     {
         "question": "ROC Curve & AUC",

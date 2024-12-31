@@ -27,11 +27,17 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [What is Linear Regression](cards/linear_regression.md)
 - [Assumptions of Linear Regression](cards/linear_reg_assumptions.md)
 - [What is Logistic Regression](cards/logistic_regression.md)
+- [Overfit & Underfit](cards/overfit_underfit.md)
 - [Bias-Variance tradeoff](cards/bias_variance_tradeoff.md)
+- [Regularization](cards/regularization.md)
 - [Confusion Matrix, Precision & Recall](cards/confusion_matrix.md)
+- [Decision Trees](cards/decision_trees.md)
+- [Random Forest](cards/random_forest.md)
 - [ROC Curve & AUC](cards/roc_aoc.md)
 - [Central Limit Theorem](cards/central_limit.md)
 - [Law of Large Numbers](cards/law_large.md)
+
+
 
 </details>
 

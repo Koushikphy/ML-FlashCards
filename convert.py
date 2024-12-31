@@ -14,12 +14,30 @@ os.makedirs(jsonFol, exist_ok=True)
 jsonLinks = []
 
 
+
 with open('Readme.md', encoding="utf8") as f:
     text = f.read()
 
 
 qBlock = text.split('<!-- LoQ -->')[1]
 qList = re.findall(r'\[([^\]]+)\]\(cards/([^)]+)\.md\)', qBlock)
+
+
+#--- print the newly added ones
+def newAdded():
+    from glob import glob
+    cards = glob('cards/*.md')
+    
+    for file in cards:
+        with open(file, 'r', encoding='utf-8') as f:
+            question,_ = f.read().split('---')
+        question = question.replace('###','').strip()
+        tf = re.findall(r'cards/([^)]+)\.md',file)[0]
+        if (question, tf) not in qList:
+            print(f"- [{question}]({file})")
+
+newAdded()
+#---------------
 
 
 for n,(ques, file) in enumerate(qList):
