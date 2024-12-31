@@ -2,14 +2,16 @@ body,
 h2,
 h3,
 div,
-ul,
-li,
 a,
 footer {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: Helvetica,sans-serif, Times;
+}
+
+ul,ol{
+  padding-inline-start: 1.5em;
 }
 
 body {
@@ -20,7 +22,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100dvh; /*Dynamic Viewport Height*/
-  font-family: "Times New Roman", Times, serif;
   padding: 0 5px;
 }
 
