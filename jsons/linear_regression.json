@@ -1,6 +1,6 @@
 {
-    "question": "<p>What is Linear Regression</p>",
-    "answer": "<p>Linear regression is a statistical method used to model the relationship between a dependent variable (target) and one or more independent variables (predictors) by fitting a linear equation to observed data. The goal is to find the best-fitting line (or hyperplane) that minimizes the difference between the predicted and actual values. It is commonly used for prediction, trend analysis, and forecasting. </p>\n<p>$$y=\\beta_0+\\beta X + \\epsilon$$  <br />\n$$\\beta = (X^T X)^{-1}X^T y$$</p>\n<ul>\n<li>$y$ is the target variable</li>\n<li>$X$ is the matrix of predictor variables</li>\n<li>$\\beta$ is the coefficient vector</li>\n<li>$\\beta_0$ is the intercept</li>\n<li>$\\epsilon$ represent the error.</li>\n</ul>",
+    "question": "<p>What is Linear Regression</p>\n",
+    "answer": "<p>Linear regression is a statistical method used to model the relationship between a dependent variable (target) and one or more independent variables (predictors) by fitting a linear equation to observed data. The goal is to find the best-fitting line (or hyperplane) that minimizes the difference between the predicted and actual values. It is commonly used for prediction, trend analysis, and forecasting. </p>\n\n<p>$$y=\\beta_0+\\beta X + \\epsilon$$<br />\n$$\\beta = (X^T X)^{-1}X^T y$$</p>\n\n<ul>\n<li>$y$ is the target variable</li>\n<li>$X$ is the matrix of predictor variables</li>\n<li>$\\beta$ is the coefficient vector</li>\n<li>$\\beta_0$ is the intercept</li>\n<li>$\\epsilon$ represent the error.</li>\n</ul>\n",
     "prev": "",
     "next": "linear_reg_assumptions"
 }

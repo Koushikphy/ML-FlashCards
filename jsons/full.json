@@ -24,8 +24,12 @@
         "file": "regularization"
     },
     {
-        "question": "Confusion Matrix, Precision & Recall",
-        "file": "confusion_matrix"
+        "question": "Gradient Descent",
+        "file": "gradient_descent"
+    },
+    {
+        "question": "Bagging and Boosting",
+        "file": "bagging_boosting"
     },
     {
         "question": "Decision Trees",
@@ -34,6 +38,18 @@
     {
         "question": "Random Forest",
         "file": "random_forest"
+    },
+    {
+        "question": "K-Nearest Neighbors",
+        "file": "k_nearest_neighbour"
+    },
+    {
+        "question": "K-Means Clustering",
+        "file": "k_means"
+    },
+    {
+        "question": "Confusion Matrix, Precision & Recall",
+        "file": "confusion_matrix"
     },
     {
         "question": "ROC Curve & AUC",

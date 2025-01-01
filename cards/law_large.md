@@ -1,4 +1,4 @@
-### Law of large numbers
+### Law of Large Numbers
 
 ---
 

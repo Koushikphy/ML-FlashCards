@@ -1,7 +1,7 @@
 import os 
 import re
 import json
-import markdown
+import markdown2
 
 
 # 1. Read the readme.md between the tage <!-- LoQ --> to read the list of cards.
@@ -13,7 +13,7 @@ os.makedirs(jsonFol, exist_ok=True)
 
 jsonLinks = []
 
-
+converter = markdown2.Markdown(extras=["tables","code-friendly"])
 
 with open('Readme.md', encoding="utf8") as f:
     text = f.read()
@@ -29,8 +29,9 @@ def newAdded():
     cards = glob('cards/*.md')
     
     for file in cards:
+        # print(file)
         with open(file, 'r', encoding='utf-8') as f:
-            question,_ = f.read().split('---')
+            question,_ = f.read().split('---',1)
         question = question.replace('###','').strip()
         tf = re.findall(r'cards/([^)]+)\.md',file)[0]
         if (question, tf) not in qList:
@@ -48,14 +49,14 @@ for n,(ques, file) in enumerate(qList):
     })
 
     with open(f"cards/{file}.md", 'r', encoding='utf-8') as f:
-        question,answer = f.read().replace('../assets','./assets').split('---')
+        question,answer = f.read().replace('../assets','./assets').split('---',1)
         #^ For html `assets` path must be on top level
     question = question.replace('###','').strip()
 
     with open(f"{jsonFol}/{file}.json",'w', encoding="utf-8") as f:
         json.dump({
-            "question":markdown.markdown(question),
-            "answer": markdown.markdown(answer),
+            "question":converter.convert(question),
+            "answer": converter.convert(answer),
             "prev":qList[n-1][1] if n>0 else '',
             "next":qList[n+1][1] if n<len(qList)-1 else '' 
         }, f, ensure_ascii=False, indent=4)

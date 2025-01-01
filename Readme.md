@@ -30,14 +30,16 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [Overfit & Underfit](cards/overfit_underfit.md)
 - [Bias-Variance tradeoff](cards/bias_variance_tradeoff.md)
 - [Regularization](cards/regularization.md)
-- [Confusion Matrix, Precision & Recall](cards/confusion_matrix.md)
+- [Gradient Descent](cards/gradient_descent.md)
+- [Bagging and Boosting](cards/bagging_boosting.md)
 - [Decision Trees](cards/decision_trees.md)
 - [Random Forest](cards/random_forest.md)
+- [K-Nearest Neighbors](cards/k_nearest_neighbour.md)
+- [K-Means Clustering](cards/k_means.md)
+- [Confusion Matrix, Precision & Recall](cards/confusion_matrix.md)
 - [ROC Curve & AUC](cards/roc_aoc.md)
 - [Central Limit Theorem](cards/central_limit.md)
 - [Law of Large Numbers](cards/law_large.md)
-
-
 
 </details>
 
