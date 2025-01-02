@@ -30,14 +30,18 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [Overfit & Underfit](cards/overfit_underfit.md)
 - [Bias-Variance tradeoff](cards/bias_variance_tradeoff.md)
 - [Regularization](cards/regularization.md)
+- [Data Standardization](cards/standardization.md)
 - [Gradient Descent](cards/gradient_descent.md)
 - [Bagging and Boosting](cards/bagging_boosting.md)
 - [Decision Trees](cards/decision_trees.md)
 - [Random Forest](cards/random_forest.md)
 - [K-Nearest Neighbors](cards/k_nearest_neighbour.md)
 - [K-Means Clustering](cards/k_means.md)
+- [Support Vector Machine](cards/svm.md)
+- [Cross-validation](cards/cross_validation.md)
 - [Confusion Matrix, Precision & Recall](cards/confusion_matrix.md)
 - [ROC Curve & AUC](cards/roc_aoc.md)
+- [Bessel's Correction](cards/bessel_correction.md)
 - [Central Limit Theorem](cards/central_limit.md)
 - [Law of Large Numbers](cards/law_large.md)
 
@@ -54,3 +58,9 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 1. **Why create this? Aren't there already plenty of ML tutorials available online?**  
    Absolutely! While it's true that many ML resources exist, I created this repository as my personal knowledge base - an easily accessible, bite-sized reference for quick reviews and self-learning.
 </details>
+
+
+
+### 🙏 Acknowledgement
+
+The cards are created using references and inspiration from a variety of sources, including tutorials, blogs, videos, and repositories. In some cases, content was directly adapted or replicated from these resources. A heartfelt thanks to all the creators whose work!

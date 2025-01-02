@@ -24,6 +24,10 @@
         "file": "regularization"
     },
     {
+        "question": "Data Standardization",
+        "file": "standardization"
+    },
+    {
         "question": "Gradient Descent",
         "file": "gradient_descent"
     },
@@ -48,12 +52,24 @@
         "file": "k_means"
     },
     {
+        "question": "Support Vector Machine",
+        "file": "svm"
+    },
+    {
+        "question": "Cross-validation",
+        "file": "cross_validation"
+    },
+    {
         "question": "Confusion Matrix, Precision & Recall",
         "file": "confusion_matrix"
     },
     {
         "question": "ROC Curve & AUC",
         "file": "roc_aoc"
+    },
+    {
+        "question": "Bessel's Correction",
+        "file": "bessel_correction"
     },
     {
         "question": "Central Limit Theorem",
