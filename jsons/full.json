@@ -24,12 +24,28 @@
         "file": "regularization"
     },
     {
+        "question": "Curse of dimensionality",
+        "file": "curse_of_dimensionality"
+    },
+    {
         "question": "Data Standardization",
         "file": "standardization"
     },
     {
+        "question": "Fill Missing Data",
+        "file": "fill_missing"
+    },
+    {
         "question": "Gradient Descent",
         "file": "gradient_descent"
+    },
+    {
+        "question": "Handling categorical features",
+        "file": "categorical_features"
+    },
+    {
+        "question": "Handling Imbalance",
+        "file": "handling_imbalance"
     },
     {
         "question": "Bagging and Boosting",

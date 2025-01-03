@@ -1,0 +1,6 @@
+{
+    "question": "<p>Curse of dimensionality</p>\n",
+    "answer": "<p>The curse of dimensionality refers to challenges that arise when working with high-dimensional data:</p>\n\n<ul>\n<li><p><strong>Sparsity</strong>: As dimensions increase, data points become sparse, making it hard for algorithms to find patterns or clusters.</p></li>\n<li><p><strong>Increased</strong> Complexity: More dimensions require exponentially more data to achieve the same density or statistical significance.</p></li>\n<li><p><strong>Overfitting</strong>: Models can overfit high-dimensional data because they might capture noise instead of meaningful patterns.</p></li>\n<li><p><strong>Distance Metrics Break Down</strong>: In high dimensions, distances between points become less meaningful as they converge to similar values.</p></li>\n</ul>\n\n<p><strong>Solution</strong>: Use dimensionality reduction techniques (e.g., PCA, t-SNE) or feature selection to focus on the most relevant dimensions.</p>\n",
+    "prev": "regularization",
+    "next": "standardization"
+}

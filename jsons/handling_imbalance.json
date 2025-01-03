@@ -1,0 +1,6 @@
+{
+    "question": "<p>Handling Imbalance</p>\n",
+    "answer": "<ol>\n<li><p><strong>Resampling Techniques</strong>:</p>\n\n<ul>\n<li>Oversampling: Duplicate or synthesize samples for the minority class (e.g., SMOTE).</li>\n<li>Undersampling: Remove samples from the majority class.</li>\n<li>Class Weights: Assign higher weights to the minority class during model training to reduce bias.</li>\n</ul></li>\n<li><p><strong>Generate Synthetic Data</strong>: Use advanced techniques like GANs to create realistic samples for the minority class.</p></li>\n<li><p><strong>Change Decision Threshold</strong>: Adjust the classification threshold to favor the minority class.</p></li>\n<li><p><strong>Use Specialized Models</strong>: Use algorithms like XGBoost or Random Forest, which handle class imbalance well.</p></li>\n<li><p><strong>Evaluation Metrics</strong>: Focus on metrics like F1-score, Precision-Recall curve, or ROC-AUC instead of accuracy.</p></li>\n</ol>\n\n<p>Choose strategies based on the dataset size, class distribution, and problem context.</p>\n",
+    "prev": "categorical_features",
+    "next": "bagging_boosting"
+}
