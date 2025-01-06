@@ -36,6 +36,10 @@
         "file": "fill_missing"
     },
     {
+        "question": "Principal Component Analysis (PCA)",
+        "file": "pca"
+    },
+    {
         "question": "Gradient Descent",
         "file": "gradient_descent"
     },
@@ -72,6 +76,14 @@
         "file": "svm"
     },
     {
+        "question": "Bayesian Inference",
+        "file": "bayes"
+    },
+    {
+        "question": "Naive Bayes Classifier",
+        "file": "maive_bayes"
+    },
+    {
         "question": "Cross-validation",
         "file": "cross_validation"
     },
@@ -86,6 +98,14 @@
     {
         "question": "Bessel's Correction",
         "file": "bessel_correction"
+    },
+    {
+        "question": "Hyperparameters",
+        "file": "hyperparameters"
+    },
+    {
+        "question": "Hyperparameter Optimization",
+        "file": "hyper_opt"
     },
     {
         "question": "Central Limit Theorem",

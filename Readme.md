@@ -33,6 +33,7 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [Curse of dimensionality](cards/curse_of_dimensionality.md)
 - [Data Standardization](cards/standardization.md)
 - [Fill Missing Data](cards/fill_missing.md)
+- [Principal Component Analysis (PCA)](cards/pca.md)
 - [Gradient Descent](cards/gradient_descent.md)
 - [Handling categorical features](cards/categorical_features.md)
 - [Handling Imbalance](cards/handling_imbalance.md)
@@ -42,13 +43,16 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [K-Nearest Neighbors](cards/k_nearest_neighbour.md)
 - [K-Means Clustering](cards/k_means.md)
 - [Support Vector Machine](cards/svm.md)
+- [Bayesian Inference](cards/bayes.md)
+- [Naive Bayes Classifier](cards/maive_bayes.md)
 - [Cross-validation](cards/cross_validation.md)
 - [Confusion Matrix, Precision & Recall](cards/confusion_matrix.md)
 - [ROC Curve & AUC](cards/roc_aoc.md)
 - [Bessel's Correction](cards/bessel_correction.md)
+- [Hyperparameters](cards/hyperparameters.md)
+- [Hyperparameter Optimization](cards/hyper_opt.md)
 - [Central Limit Theorem](cards/central_limit.md)
 - [Law of Large Numbers](cards/law_large.md)
-
 </details>
 
 <!-- LoQ -->
