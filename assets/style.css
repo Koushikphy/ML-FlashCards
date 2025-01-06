@@ -108,6 +108,11 @@ h2{
   flex: 1;
   background-color: #f9f9f9;
   padding: 10px;
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
 }
 
 #allList h3 {
@@ -118,6 +123,8 @@ h2{
 
 #qlist {
   margin: 0 0 0 1.25em;
+  flex: 1;
+  overflow-y: auto;
 }
 
 #qlist li {
