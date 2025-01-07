@@ -33,6 +33,7 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [Curse of dimensionality](cards/curse_of_dimensionality.md)
 - [Data Standardization](cards/standardization.md)
 - [Fill Missing Data](cards/fill_missing.md)
+- [Outliers](cards/outliers.md)
 - [Principal Component Analysis (PCA)](cards/pca.md)
 - [Gradient Descent](cards/gradient_descent.md)
 - [Handling categorical features](cards/categorical_features.md)

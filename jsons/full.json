@@ -36,6 +36,10 @@
         "file": "fill_missing"
     },
     {
+        "question": "Outliers",
+        "file": "outliers"
+    },
+    {
         "question": "Principal Component Analysis (PCA)",
         "file": "pca"
     },

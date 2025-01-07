@@ -36,9 +36,34 @@ Standardization and data scaling are essential preprocessing steps in many machi
 
 ### 6. Box-Cox Transformation
 
-- **Definition**: Transforms data to approximate normality by applying a power transformation. $x' = \begin{cases}
+- **Definition**: Transforms data to approximate normality by applying a power transformation. 
+
+$$x' = \begin{cases}
 \frac{x^\lambda - 1}{\lambda} & \text{if } \lambda \neq 0 \\
 \log(x) & \text{if } \lambda = 0
-\end{cases}$
+\end{cases}$$
+
 - **Use When**: The data is not normally distributed, and normality is desired for modeling.
 - **Applications**: Regression analysis, ANOVA.
+
+
+
+### 6. Yeo-Johnson Transformation
+- **Definition**: The Yeo-Johnson transformation applies a piecewise-defined function to each data point $x$ in the dataset, with a parameter $\lambda$ 
+ that controls the nature of the transformation:
+
+
+$$
+y = 
+\begin{cases} 
+\frac{(x + 1)^\lambda - 1}{\lambda}, & \text{if } \lambda \neq 0, x \geq 0 \\   
+\ln(x + 1), & \text{if } \lambda = 0, x \geq 0 \\   
+\frac{-(|x| + 1)^{2 - \lambda} - 1}{2 - \lambda}, & \text{if } \lambda \neq 2, x < 0 \\   
+-\ln(|x| + 1), & \text{if } \lambda = 2, x < 0  
+\end{cases}
+$$
+
+- **Use When**: To make data more symmetric and closer to a normal distribution.
+To stabilize variance when the data is heteroscedastic (i.e., the variance changes across the range of data).
+To improve the performance of machine learning algorithms that assume normality or require scaled features. It can handle both positive and negative values, unlike the Box-Cox transformation.
+  
