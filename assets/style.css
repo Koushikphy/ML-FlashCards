@@ -96,6 +96,7 @@ h2{
 
 #container {
   display: flex;
+  flex-flow: column;
   flex: 1;
   gap: 20px;
   padding: .5em;
