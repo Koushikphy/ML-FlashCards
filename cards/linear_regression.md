@@ -14,14 +14,13 @@ $$\beta = (X^T X)^{-1}X^T y$$
 - $\epsilon$ represent the error.
 
 
-```python
-# sample calculation
 
-x = np.linspace(0,1)
-y = x**2 + .5*x + np.random.rand(len(x))/25
+#### sample python calculation
 
-X = np.matrix([x**2, x, np.ones_like(x) ]).T 
+x = np.linspace(0,1)  
+y = x**2 + .5*x + np.random.rand(len(x))/25  
+
+X = np.matrix([x**2, x, np.ones_like(x) ]).T   
 Y = np.matrix(y).T
 
-np.linalg.inv(X.T*X)*X.T*Y  # beta 
-```
+np.linalg.inv(X.T*X)*X.T*Y  
