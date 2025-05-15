@@ -11,4 +11,9 @@ A confusion matrix is a table used to evaluate a classification model's performa
 Precision and recall can be perfectly separable when the data is perfectly separable. These metrics are commonly used in evaluating binary classification models but can be extended to multi-class classification by averaging over all classes or using weighted averages.
 
 
+#### ✅ Metric to Focus On:
+- If **false positives are critical** (e.g., flagging a transaction as fraud, classifying a real email as spam), then **Precision** matters.
+- If **false negatives are unacceptable** (e.g., missing of a deadly disease, missing a faulty product), then **Recall** or **F1 Score** is preferred.
+
+
 ![Confusion Matrix](../assets/images/confusionMatrxiUpdated.jpg)

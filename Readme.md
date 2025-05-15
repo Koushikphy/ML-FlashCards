@@ -30,6 +30,7 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 - [Overfit & Underfit](cards/overfit_underfit.md)
 - [Bias-Variance tradeoff](cards/bias_variance_tradeoff.md)
 - [Regularization](cards/regularization.md)
+- [Feature selection: Ridge vs Lasso](cards/regularization2.md)
 - [Curse of dimensionality](cards/curse_of_dimensionality.md)
 - [Data Standardization](cards/standardization.md)
 - [Fill Missing Data](cards/fill_missing.md)
@@ -72,4 +73,4 @@ For detailed guidelines on how to get started, please refer to the [CONTRIBUTING
 
 ### 🙏 Acknowledgement
 
-The cards are created using references and inspiration from a variety of sources, including tutorials, blogs, videos, and repositories. In some cases, content was directly adapted or replicated from these resources. A heartfelt thanks to all the creators whose work!
+The cards are created using references and inspiration from a variety of sources, including tutorials, blogs, videos, and repositories. In some cases, content was directly adapted or replicated from these resources. A heartfelt thanks to all the creators whose work contributed to this!

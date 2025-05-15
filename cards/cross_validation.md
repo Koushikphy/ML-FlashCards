@@ -12,6 +12,11 @@ It involves dividing the dataset into multiple subsets and systematically traini
 - **Aggregate Results**: Compute the average performance metric across all k iterations.
 
 
+### Key points to note:
+- Cross validation is done to estimate how well the pipeline generalizes to unseen data, which helps detect overfitting or data leakage before final training.
+- It does not: (a) train a final model; (b) tune hyperparameters; (c) boost or combine results.
+- When you pass a pipeline/model to a cross validation function, it internally creates separate, cloned copies of the pipeline and train and evaluate each clone independently. The original state of the pipeline/model at the end remain unchanged (not trained).
+
 ### Types of Cross-Validation
     
 1. **K-Fold Cross-Validation**: The dataset is divided into k equally sized folds. The model is trained and validated k times, each time using a different fold as the validation set.
