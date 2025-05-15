@@ -24,6 +24,10 @@
         "file": "regularization"
     },
     {
+        "question": "Feature selection: Ridge vs Lasso",
+        "file": "regularization2"
+    },
+    {
         "question": "Curse of dimensionality",
         "file": "curse_of_dimensionality"
     },
