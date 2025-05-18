@@ -41,6 +41,9 @@ newAdded()
 #---------------
 
 
+
+txtx = ''
+
 for n,(ques, file) in enumerate(qList):
     
     jsonLinks.append({
@@ -51,6 +54,7 @@ for n,(ques, file) in enumerate(qList):
     with open(f"cards/{file}.md", 'r', encoding='utf-8') as f:
         question,answer = f.read().replace('../assets','./assets').split('---',1)
         #^ For html `assets` path must be on top level
+    txtx += f"{question}   \n{answer}\n\n"
     question = question.replace('###','').strip()
 
     with open(f"{jsonFol}/{file}.json",'w', encoding="utf-8") as f:
@@ -60,6 +64,9 @@ for n,(ques, file) in enumerate(qList):
             "prev":qList[n-1][1] if n>0 else '',
             "next":qList[n+1][1] if n<len(qList)-1 else '' 
         }, f, ensure_ascii=False, indent=4)
+
+with open('./notes/merged.md','w')  as f:
+    f.write(txtx)
 
 
 with open(f'{jsonFol}/full.json','w', encoding="utf-8") as f:
