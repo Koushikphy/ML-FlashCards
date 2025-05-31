@@ -1,3 +1,154 @@
+
+## P-Value
+
+#### Purpose:
+
+A p-value tells you the **probability of observing your data** (or something more extreme) **assuming the null hypothesis is true**.
+
+#### Interpretation:
+
+* **Low p-value (< 0.05)**: Strong evidence **against** the null hypothesis → reject it.
+* **High p-value (0.05)**: Weak evidence against the null → fail to reject it.
+
+
+
+
+#### Explanation of p-value Statsmodels Regression Coefficients
+
+When you run a regression using `statsmodels` (like OLS), it estimates coefficients for your predictor variables (X), and for each coefficient, it reports: (i) Estimate of the coefficient, (ii) Standard error and (iii) p-value.
+
+
+🎯 The Null Hypothesis (H₀) for Each Coefficient:
+
+H₀: The true coefficient = 0 i.e., this predictor has **no effect** on the response variable
+
+
+✅ **What does the p-value mean here?**
+
+Let's say the p-value for a coefficient is **0.03**.
+
+That means:
+
+"If the true coefficient were actually 0 (i.e., **if the null hypothesis is true**), then there’s only a **3% chance** we would observe a coefficient **this far away from zero** (or further) just due to random sampling variation."
+
+In other words:
+
+The **p-value** is the probability of seeing a coefficient as extreme as the one observed, **assuming that the predictor actually has no effect**.
+
+
+📉 If the p-value is **small** (e.g., < 0.05):
+
+* The observed data is **very unlikely** under the null hypothesis.
+* So, you **reject the null hypothesis**.
+* Conclusion: The coefficient is **statistically significant**.
+* That variable likely **has a real effect** on the dependent variable.
+
+
+
+📈 If the p-value is **large** (e.g., 0.05):
+
+* The observed coefficient is **not surprising** under the null hypothesis.
+* So, you **fail to reject the null hypothesis**.
+* Conclusion: You **do not have strong evidence** that the variable has an effect.
+* The high p-value means:
+
+  “If the coefficient is 0, we’d commonly see estimates like this just due to chance.”
+
+So, the p-value is **not** the probability that the null hypothesis is true — it's the probability of your **data** (or something more extreme), **assuming** the null hypothesis is true.
+
+
+
+🔁 Summary Reworded for Clarity
+
+| P-Value | Meaning under H₀ (β = 0)                                | Conclusion                                  |
+| ------- | ------------------------------------------------------- | ------------------------------------------- |
+| Small   | This result is **rare** if the coefficient is truly 0   | Reject H₀ → Coefficient is likely important |
+| Large   | This result is **common** if the coefficient is truly 0 | Fail to reject H₀ → No strong evidence      |
+
+
+
+
+## T-Test
+
+#### Purpose:
+
+Used to compare **means** between **two groups** to see if they are significantly different.
+
+#### Types:
+
+* **One-sample t-test**: Compare sample mean to a known value.
+* **Independent two-sample t-test**: Compare means of two independent groups.
+* **Paired t-test**: Compare means from the same group at different times (before vs. after).
+
+#### Example:
+
+You want to know if the average test score of class A is different from class B.
+
+#### Conditions:
+
+* Population standard deviation is unknown.
+* Sample size is small (typically < 30).
+* Data is normally distributed.
+
+
+| Test    | Compares                | Use When                            | Key Assumptions                         |
+| ------- | ----------------------- | ----------------------------------- | --------------------------------------- |
+| t-test  | Means (2 groups)        | Small sample, σ unknown             | Normality, equal variance (in 2-sample) |
+
+
+---
+
+## F-Test
+
+#### Purpose:
+
+Used to **compare variances** between **two or more groups**. Often used in **ANOVA** (Analysis of Variance).
+
+#### Example:
+
+You want to test if three different teaching methods lead to different student performance. Use ANOVA (which uses F-test internally) to test if group variances differ.
+
+#### Conditions:
+
+* Data should be normally distributed.
+* Independent observations.
+* Groups have similar variances (homogeneity of variance).
+
+
+| Test    | Compares                | Use When                            | Key Assumptions                         |
+| ------- | ----------------------- | ----------------------------------- | --------------------------------------- |
+| F-test  | Variances               | Comparing 2+ group variances        | Normality, independence                 |
+
+
+
+---
+
+## Z-Test
+
+#### Purpose:
+
+Also used to compare **means**, like a t-test, but under **different conditions**.
+
+#### When to use:
+
+* Large sample sizes (n 30).
+* Population standard deviation is **known**.
+
+#### Example:
+
+You want to compare the average height of a sample to the population height, and you know the population standard deviation.
+
+
+
+| Test    | Compares                | Use When                            | Key Assumptions                         |
+| ------- | ----------------------- | ----------------------------------- | --------------------------------------- |
+| p-value | Not a test but a result | Used to interpret test significance | Depends on the test used                |
+
+
+
+---
+
+
 ## What is Linear Regression
 
    
