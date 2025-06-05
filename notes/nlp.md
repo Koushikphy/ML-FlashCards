@@ -114,4 +114,39 @@ Sarcasm is hard for AI because:
 * Include **user history**, **dialogue context**, or even **multimodal data** (like audio for tone).
 * Train on **sarcasm-labeled datasets** (e.g., Twitter sarcasm corpus).
 
+
 ---
+
+
+1. **Fine-tuning vs. RAG**:
+
+   * *Fine-tuning* updates a model's weights using task-specific data.
+   * *RAG (Retrieval-Augmented Generation)* uses external knowledge sources (like a database) to generate responses without changing model weights.
+
+2. **Transformers vs. LSTMs**:
+
+   * *Transformers* handle long-range dependencies better with parallel processing.
+   * *LSTMs* process sequentially and struggle with long contexts.
+
+3. **LoRA and QLoRA**:
+
+   * *LoRA* (Low-Rank Adaptation) adds trainable layers to reduce fine-tuning costs.
+   * *QLoRA* combines LoRA with quantization to save memory and allow training on consumer hardware.
+
+4. **Text-to-text vs. Multimodal generation**:
+
+   * *Text-to-text* deals with input/output as text only.
+   * *Multimodal* handles multiple data types (e.g., text + image).
+
+5. **Removing Stop Words**:
+
+   * Typically done using *predefined stop word lists* (e.g., from NLTK, spaCy).
+
+6. **Semantic Search**:
+
+   * Uses *meaning* (via embeddings) rather than exact word match to find relevant documents.
+
+7. **Tokenization vs. Lemmatization**:
+
+   * *Tokenization* splits text into words/pieces.
+   * *Lemmatization* reduces words to their base form (e.g., "running" → "run").
