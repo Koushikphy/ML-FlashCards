@@ -175,6 +175,16 @@ There are several types:
 > Similar meanings → similar vectors
 > `"Paris"` and `"France's capital"` might be close in vector space.
 
+
+Embeddings convert text—typically words, subwords, or tokens—into dense numerical vectors that can be processed by machine learning models. These vectors capture semantic information, allowing similar words to have similar vector representations.
+
+Basic embeddings, such as Word2Vec, GloVe, or FastText, use a fixed lookup table. Each word is assigned a unique vector based on patterns learned during training, typically by analyzing word co-occurrence in large text corpora. Once trained, the vector for a word is always the same—regardless of context. For example, the word "bank" will have the same vector whether it's used in the sense of "river bank" or "financial bank." These are called static embeddings.
+
+In contrast, modern transformer-based models like BERT, GPT, and similar architectures start with an embedding layer too—initially mapping each token to a basic vector. However, these vectors are then passed through multiple transformer layers. These layers use mechanisms like self-attention to capture relationships between tokens in a sentence, allowing the model to understand context. As a result, the embedding for a word like "bank" can change depending on whether it's used in a financial or geographical context.
+
+This process produces contextualized embeddings, which are more powerful because they reflect not just the identity of a word, but also its role and meaning within a specific sentence.
+
+
 ---
 
 ### **7. How does a tokenizer handle out-of-vocabulary (OOV) or unknown words?**
@@ -850,6 +860,11 @@ Combines:
 
   * Picking the right layers is key for effective fine-tuning
 
+
+
+During fine-tuning, LoRA (Low-Rank Adaptation) freezes the original model weights and introduces small trainable low-rank matrices into specific linear layers — typically the query (Wq) and value (Wv) projection layers of the attention mechanism.
+
+These low-rank matrices are used to model the weight updates, enabling the model to learn task-specific behavior without modifying the original pre-trained weights. As a result, only a few million parameters are trained, which is a small fraction compared to the billions of parameters in the full model. This makes fine-tuning much more efficient in terms of memory and compute.
 ---
 
 ### **35. What is PEFT (Parameter-Efficient Fine-Tuning)? How does it compare to TRL (Transformers Reinforcement Learning Library)?**
@@ -955,6 +970,14 @@ Libraries:
 
 #### 🔁 RAG = Retrieve → Read → Respond
 
+
+**Retrieval-Augmented Generation (RAG)** is a technique that combines **large language models (LLMs)** with an **external knowledge base** to reduce hallucinations and incorporate up-to-date or domain-specific information — **without retraining the model**.
+In RAG, relevant documents (such as pages, PDFs, or text chunks) are stored in a **vector database**, where each document is converted into an **embedding** — a dense vector that captures its meaning.
+During inference, the input query is also converted into an embedding using the same model. This embedding is used to **search the vector database for the most semantically similar documents**.
+The retrieved documents (also called **retrieval context**) are then used to **augment the original prompt**. This **enriched prompt** is passed to the LLM, which uses both the query and the retrieved knowledge to **generate a more accurate, informed response**.
+
+This process allows the model to access information **outside its training data** and dynamically use it at runtime — which is especially useful for domains with **frequent updates** (like law, medicine, or finance) or **custom organizational data**.
+
 ---
 
 ### **38. Compare RAG vs. Fine-Tuning: Which to use and when?**
@@ -1021,3 +1044,43 @@ Used for:
 ---
 
 Would you like a code example showing how to build a RAG pipeline with a vector database (e.g., using LangChain + FAISS)?
+
+
+
+
+----
+
+## Transformer architecture
+
+ The **Transformer architecture** has two main components: the **encoder** and the **decoder**.
+
+ #### Encoder:
+
+ The encoder begins with an **embedding layer**, which converts input words or tokens into dense **embedding vectors**. After that, **positional encoding** is added to the embeddings to provide information about the position of each token in the sequence, since transformers do not have built-in notion of order like RNNs.
+
+ The next key component is the **self-attention mechanism**. This allows each token to **attend to every other token in the input**, including itself. This is crucial because it helps the model understand relationships and dependencies between words, regardless of their position in the sequence.
+
+ Transformers use **multi-head attention**, which means the self-attention mechanism is applied in parallel multiple times with different parameter sets. This allows the model to capture different types of relationships in different subspaces.
+
+ The output of the attention mechanism is then **added back to the original input of the attention layer** using a **residual connection**, and **layer normalization** is applied (you missed this part). This output is then passed through a **feed-forward neural network** (which is applied position-wise), followed again by residual connection and layer normalization.
+
+ The encoder typically has multiple such identical blocks stacked on top of each other.
+
+ #### Decoder:
+
+ The decoder also starts with an **embedding layer** and **positional encoding**, just like the encoder. However, its attention layers are slightly different.
+
+ First, it applies **masked self-attention**, which ensures that each position can only attend to **previous positions** (not future ones). This is important during generation so that the model doesn’t “peek ahead”.
+
+ Then, there is a second attention layer called **encoder-decoder attention**, where the decoder attends to the **output of the encoder**. This lets the decoder use information from the input sequence to help predict the output.
+
+ The output of this process is again passed through a **feed-forward layer**, along with residual connections and normalization.
+
+ The decoder produces one token at a time. During generation, it starts with a special start token (`<sos>`) and tries to predict the next token. That predicted token is then fed back into the decoder to predict the next one. This process continues until a special **end-of-sequence token** (`<eos>`) is generated.
+
+
+
+---
+
+LORA
+
