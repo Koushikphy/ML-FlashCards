@@ -199,3 +199,178 @@ print(response)
 6. Retrieve relevant chunks and get a coherent answer.
 
 
+
+
+
+-----
+### Evaluating RAG output
+
+
+Evaluating the output of a **Retrieval-Augmented Generation (RAG)** system is different from evaluating a traditional generative model because you're evaluating **both retrieval and generation components**. An end-to-end evaluation should include metrics that assess:
+
+1. **Retrieval quality** – Did the model retrieve relevant and useful documents?
+2. **Faithfulness and factual accuracy** – Did the generated output stay faithful to the retrieved documents?
+3. **Relevance/Answer Quality** – Is the answer relevant, complete, and understandable?
+4. **Latency or efficiency** – (Optional in production) How quickly and efficiently the RAG model operates.
+
+---
+
+## 🔧 Setup: Simple End-to-End Example
+
+Let’s suppose we are building a RAG system for a **Q\&A bot** over a **Wikipedia-like knowledge base**.
+
+### 🔹 Step 1: Sample Data
+
+```python
+query = "What are the health benefits of green tea?"
+```
+
+### 🔹 Step 2: Retrieved Documents (Top-3 Passages from Vector DB)
+
+```python
+retrieved_docs = [
+    "Green tea contains polyphenols that have been shown to reduce inflammation and help fight cancer.",
+    "It is rich in antioxidants called catechins, which may help prevent cell damage.",
+    "Green tea has small amounts of caffeine and L-theanine, which together may improve brain function."
+]
+```
+
+### 🔹 Step 3: Generated Answer
+
+```python
+generated_answer = (
+    "Green tea offers multiple health benefits. It is rich in antioxidants like catechins "
+    "which help prevent cell damage. It also contains polyphenols that reduce inflammation and "
+    "may help fight cancer. Additionally, the combination of caffeine and L-theanine can improve brain function."
+)
+```
+
+---
+
+## ✅ Evaluation Strategy
+
+We now evaluate the output using **automatic metrics** and **human criteria**.
+
+---
+
+### 📌 1. **Retrieval Evaluation**
+
+#### 🔸 Metric: Recall\@k or Precision\@k
+
+Check if the relevant ground truth document is in top-k retrieved.
+
+```python
+# Assume ground truth doc:
+ground_truth_doc = "Green tea contains polyphenols that reduce inflammation and help fight diseases."
+
+recall_at_3 = any(ground_truth_doc in doc for doc in retrieved_docs)  # Output: True
+```
+
+Or use **embedding similarity** (cosine similarity between ground truth doc and retrieved docs).
+
+---
+
+### 📌 2. **Faithfulness Evaluation (Factual Consistency)**
+
+We ask:
+
+* Are all factual claims in the generated answer **supported by the retrieved documents**?
+* Is there any **hallucination**?
+
+#### 🔸 Option 1: LLM-as-a-Judge (automated fact-checking)
+
+Use a model like GPT-4 or another LLM with this prompt:
+
+```python
+prompt = f"""Given the retrieved documents: {retrieved_docs}
+Evaluate whether the following answer is fully supported by them.
+Answer: "{generated_answer}"
+Is it fully supported? If not, highlight hallucinated parts.
+"""
+```
+
+#### 🔸 Option 2: Faithfulness Score
+
+Some tools offer automated factuality scoring, such as:
+
+* **FactCC**, **DAE**, or **QAGS**
+* Or use OpenAI's `text-davinci-003` or GPT-4 to rate faithfulness from 1 to 5.
+
+---
+
+### 📌 3. **Answer Quality (Relevance, Fluency, Completeness)**
+
+Ask:
+
+* Does the answer address the question?
+* Is it coherent and easy to read?
+
+#### 🔸 Metric: ROUGE / BLEU / METEOR (if ground-truth exists)
+
+```python
+from rouge_score import rouge_scorer
+scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True)
+scorer.score("Green tea has health benefits such as reducing inflammation and improving brain function.",
+             generated_answer)
+```
+
+#### 🔸 Metric: BERTScore (semantic similarity)
+
+```python
+from bert_score import score
+P, R, F1 = score([generated_answer], [reference_answer], lang="en")
+```
+
+#### 🔸 Metric: Human/LLM-based scoring
+
+Prompt example:
+
+```python
+prompt = f"""
+Evaluate the following answer for the question: "{query}"
+Answer: "{generated_answer}"
+Criteria:
+- Relevance (Does it answer the question?)
+- Completeness
+- Clarity
+Rate each on a scale of 1 to 5.
+"""
+```
+
+---
+
+### 📌 4. **Optional: Hallucination Detection**
+
+Use automatic hallucination detection (e.g., via prompting an LLM):
+
+```python
+prompt = f"""Compare the generated answer to the retrieved passages.
+Highlight any parts of the answer that are not supported by the passages.
+
+Answer: {generated_answer}
+Retrieved: {retrieved_docs}
+"""
+```
+
+---
+
+## 🔚 Summary of Metrics You Can Use
+
+| Component      | Metric                            | Method                                   |
+| -------------- | --------------------------------- | ---------------------------------------- |
+| Retrieval      | Recall\@k, Precision\@k           | Ground truth check, similarity           |
+| Faithfulness   | QA-check, LLM judge, FactCC       | Model evaluation or LLM prompt           |
+| Answer Quality | ROUGE, BLEU, BERTScore, LLM judge | If reference answer exists               |
+| Fluency        | Perplexity, LLM judge             | GPT-4, Claude scoring                    |
+| Hallucination  | LLM-based comparison              | GPT prompt comparing output vs retrieved |
+
+---
+
+## 🧪 Toolkits and Frameworks for Evaluation
+
+* **RAGAS** (Retrieval-Augmented Generation Assessment)
+* **LangChain Evaluators** (`langchain.evaluation`)
+* **TruLens** – For logging and evaluating LLM outputs
+* **LlamaIndex evals**
+* **Promptfoo** – For prompt evaluation and testing
+

@@ -332,3 +332,422 @@ Because a **p-value is not the probability the null is false**.
 * It **does not** tell us the probability that the null hypothesis is actually false — that would require **Bayesian analysis**.
 
 
+---
+
+
+
+### Difference between K-Means and DBSCAN
+
+K-Means is a **centroid-based** clustering algorithm that partitions data into a fixed number of clusters (you must predefine *k*). It works best with **spherical and equally sized clusters** and is sensitive to outliers.
+
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise), on the other hand, is a **density-based** algorithm. It groups together points that are closely packed (based on a distance and minimum number of points), and marks low-density points as noise. DBSCAN doesn’t require the number of clusters to be specified and can find arbitrarily shaped clusters.
+
+**Key differences:**
+
+* K-Means assumes convex clusters; DBSCAN can handle non-convex shapes.
+* K-Means is sensitive to outliers; DBSCAN naturally handles them.
+* K-Means requires *k*; DBSCAN uses `eps` and `minPts`.
+
+---
+
+### Difference between Factor Analysis and PCA
+
+Both are dimensionality reduction techniques, but they differ in **purpose and assumptions**.
+
+PCA (Principal Component Analysis) is **variance-focused**. It transforms data into components that explain the maximum variance. It’s purely mathematical and doesn’t assume any underlying data generation model.
+
+Factor Analysis, however, is **model-based** and focuses on explaining the observed variables in terms of a few **latent factors** plus noise. It assumes that variability in data is due to these hidden factors and tries to uncover them.
+
+**Key differences:**
+
+* PCA captures maximum variance; Factor Analysis models latent structure.
+* PCA includes both common and unique variance; Factor Analysis aims to isolate only the shared (common) variance.
+* PCA is often used for feature reduction; Factor Analysis is used for understanding underlying constructs (like in psychology or social sciences).
+
+
+
+---
+
+###  How does Boosting work?
+
+Boosting is an **ensemble learning technique** that combines multiple weak learners to create a strong predictive model. The most common form is **gradient boosting**.
+
+The process is **sequential**—each new model is trained to **correct the errors of the previous ones**. For example, the first tree might misclassify certain data points. The second tree is trained on the **residuals** or errors from the first, and so on. Each model gets added with a weight to form the final prediction.
+
+The core idea is to **focus more on hard-to-learn examples**. In algorithms like AdaBoost, misclassified samples get **higher weights** in the next iteration. In gradient boosting (e.g., XGBoost), we optimize a loss function using **gradient descent in function space**—each tree is a step in minimizing the loss.
+
+This method is powerful because it:
+
+* Reduces bias and variance.
+* Works well with tabular data.
+* Can overfit if not regularized (via learning rate, tree depth, etc.).
+
+---
+
+### How to fine-tune XGBoost
+
+Tuning XGBoost is about balancing **bias, variance, and training efficiency**.
+
+Key hyperparameters:
+
+1. **Learning rate (`eta`)**: Controls how much each tree contributes. Smaller values (e.g., 0.01–0.1) improve generalization but need more trees.
+2. **`n_estimators`**: Number of boosting rounds. Often tuned along with `eta`.
+3. **`max_depth`**: Controls model complexity. Larger depth = higher variance.
+4. **`subsample` & `colsample_bytree`**: Random row and feature sampling. Reduces overfitting and improves generalization.
+5. **`gamma`**: Minimum loss reduction required to make a further split.
+6. **`reg_alpha` and `reg_lambda`**: L1 and L2 regularization.
+
+**Steps to tune**:
+
+* Use **RandomSearchCV** or **Optuna** for efficient search.
+* Start with tree depth, learning rate, and estimators.
+* Fix these, then tune regularization and sampling.
+
+Monitor:
+
+* **Training vs validation error**.
+* Use **early stopping** to avoid overfitting.
+
+---
+
+###  **Explain WoE, IV, and VIF**
+
+These are classic **feature evaluation and selection tools**, especially in credit scoring and regression:
+
+
+* **Weight of Evidence (WoE)**: Converts categorical or binned numerical features into continuous values by comparing proportions of good vs bad outcomes:
+
+  $$
+  \text{WoE} = \log\left(\frac{\text{\% of Goods in bin}}{\text{\% of Bads in bin}}\right)
+  $$
+
+  Makes variables more linear and model-friendly.
+
+
+
+* **Information Value (IV)**: Measures predictive power of a feature to separate binary outcomes. Calculated using Weight of Evidence bins.
+
+  * IV < 0.02: Not useful
+  * IV 0.1–0.3: Medium predictive
+  * IV > 0.3: Strong predictive
+
+  $$
+  IV_i = (\text{\% of Goods in bin} - \text{\% of Bads in bin}) \times WoE_i\\
+
+  IV = \sum IV_i
+  $$
+
+
+* **Variance Inflation Factor (VIF)**: Measures multicollinearity in regression. VIF > 5 or 10 indicates high collinearity.
+
+  $$
+  \text{VIF}_i = \frac{1}{1 - R_i^2}
+  $$
+
+  High VIF can inflate standard errors and make model unstable.
+
+---
+
+### ✅ **Gini Impurity vs Entropy**
+
+Both are used in decision trees to measure **node impurity**, i.e., how mixed the classes are.
+
+* **Gini Impurity**:
+
+  $$
+  G = 1 - \sum p_i^2
+  $$
+
+  Measures the probability that a randomly chosen sample would be incorrectly classified if randomly labeled according to the class distribution. It’s faster to compute and often used in CART.
+
+* **Entropy**:
+
+  $$
+  H = -\sum p_i \log_2 p_i
+  $$
+
+  Comes from information theory. Measures average information (or surprise) required to identify class labels.
+
+**Comparison**:
+
+* Both aim to split the data in a way that increases purity.
+* Gini is more computationally efficient. Use this when speed is more important
+* Entropy tends to penalize impurity slightly more. Use this when the interpretability or theory is important. 
+
+In practice, they often result in similar trees.
+
+---
+
+### **Time Complexity of Linear Regression**
+
+**Closed-form (Normal Equation)**:
+
+$$
+\hat{\beta} = (X^TX)^{-1}X^Ty
+$$
+
+* Computing $X^TX$: $\mathcal{O}(nd^2)$
+* Inverting $X^TX$: $\mathcal{O}(d^3)$
+* Total: $\mathcal{O}(nd^2 + d^3)$
+
+**Gradient Descent**:
+
+* Each iteration: $\mathcal{O}(nd)$
+* For $k$ iterations: $\mathcal{O}(knd)$
+
+**When to use which?**
+
+* Closed-form is fast for small datasets.
+* Gradient descent is scalable and used when $d$ is large.
+
+---
+
+
+###  How does weight sharing differ between CNNs and RNNs?
+
+**Weight sharing** reduces the number of parameters, enabling models to generalize better and learn efficiently.
+
+* In **CNNs**, weight sharing happens **spatially**. A filter (kernel) slides across different parts of an image using the **same weights**. This enables CNNs to detect patterns (like edges or textures) regardless of their position in the input. So, if a cat’s ear appears at the top-left or bottom-right of an image, the same filter detects it.
+
+* In **RNNs**, weight sharing happens **temporally**. The **same set of weights** is applied across all time steps in the sequence. This helps the RNN generalize to sequences of varying length. For instance, in language modeling, the weights that process the first word are reused for the second, third, and so on.
+
+> ✅ So: CNNs reuse weights across **space**, RNNs reuse them across **time**.
+
+This difference also affects the model’s **parallelizability** and the **types of patterns** they learn.
+
+---
+
+###  Why do RNNs suffer from vanishing gradients more than CNNs?
+
+RNNs process sequences **one step at a time**, passing hidden states forward through potentially **hundreds of time steps**. During backpropagation, the chain rule multiplies many small derivatives (from sigmoid or tanh activations), causing gradients to shrink **exponentially** as we go backward in time — this is the **vanishing gradient problem**.
+
+CNNs don’t have this issue because:
+
+* They have a **fixed number of layers** (not unrolled over time).
+* Their filters apply locally and don’t pass hidden states across long distances.
+* They often use **ReLU**, which doesn’t squash gradients like sigmoid/tanh.
+
+So, **depth over time** is the root cause for vanishing gradients in RNNs.
+
+---
+
+### Why are LSTMs and GRUs better than vanilla RNNs?
+
+**Vanilla RNNs** pass the hidden state from one step to the next, but suffer from:
+
+* Vanishing gradients
+* Difficulty remembering long-term dependencies
+
+**LSTMs (Long Short-Term Memory)** and **GRUs (Gated Recurrent Units)** solve this by introducing **gating mechanisms**:
+
+* **Forget gate**: Decides what to discard.
+* **Input gate**: Decides what new information to add.
+* **Output gate**: Decides what to expose to the next step.
+
+These mechanisms let the model **control information flow**, allowing gradients to survive across long time spans. GRUs are a simpler version of LSTMs with fewer gates but often perform comparably.
+
+In short:
+
+* Better memory
+* Faster training
+* Mitigated vanishing gradients
+
+That’s why they are widely used in NLP and time-series.
+
+---
+
+### Can CNNs be used on sequences?
+
+Yes — CNNs, especially **1D CNNs**, are often used on sequential data like text, audio, and time series.
+
+Instead of sliding filters over 2D image grids, 1D CNNs slide over **time steps or tokens**. They’re useful for:
+
+* Capturing **local temporal patterns** (e.g., n-grams in text)
+* Fast, parallel training (unlike RNNs)
+* Fixed-size output from variable-length input (with pooling)
+
+However, CNNs struggle with **long-range dependencies**, which RNNs, LSTMs, or Transformers handle better.
+
+📌 Use 1D CNNs when:
+
+* You care more about **speed** and **local patterns**
+* You want to **avoid sequential bottlenecks** in RNNs
+
+---
+
+### How do CNNs reduce dimensionality while preserving features?
+
+CNNs reduce input dimensionality using:
+
+1. **Convolution with stride > 1**: Skips some positions during the filter application, reducing width/height.
+2. **Pooling (usually max pooling)**: Downsamples by summarizing nearby values (e.g., taking the max over a 2×2 region).
+
+These steps:
+
+* Reduce computation
+* Prevent overfitting
+* Keep **salient features** like edges or textures intact
+
+As a result, CNNs compress the input while retaining the most **informative patterns**.
+
+---
+
+### What’s the role of padding in CNNs?
+
+Padding adds **extra pixels (usually zeros)** around the input before applying convolution. It serves three purposes:
+
+1. **Preserve spatial dimensions**: Without padding, every convolution reduces size. Padding keeps input and output the same size (called *same padding*).
+2. **Help with edge detection**: Without padding, edge pixels get ignored more often. Padding ensures filters can cover corners too.
+3. **Control model depth**: Padding allows us to stack more layers without shrinking input too quickly.
+
+No padding = smaller output. Padding = controlled output size and better feature extraction.
+
+---
+
+### Why can’t CNNs handle temporal dependencies like RNNs?
+
+CNNs process data **locally** — their receptive field is limited unless you stack many layers or use dilation. So they **can’t inherently remember past inputs** unless explicitly designed (e.g., with memory or recurrence).
+
+RNNs, on the other hand:
+
+* Maintain a **hidden state** over time
+* Are designed for **temporal sequence modeling**
+
+CNNs can model **short-term** dependencies well (with wide filters), but for **long-term** or **order-sensitive tasks**, RNNs or Transformers are more appropriate.
+
+Example: CNN can classify a sequence of words as “positive” or “negative”, but for language generation or translation, you’d need temporal memory (RNN/Transformer).
+
+---
+
+### Parallelization: CNNs vs RNNs
+
+* **CNNs** are **highly parallelizable**. Each convolution over pixels or tokens can happen simultaneously. That's why CNNs train fast on GPUs.
+* **RNNs** are **sequential by nature**. Each step depends on the output of the previous, so training can’t be parallelized easily.
+
+This makes CNNs more efficient and scalable. RNNs are slower, especially on long sequences, unless modified (e.g., with truncated backprop or parallel variants like QRNN).
+
+---
+
+### How to use Callback to stop learning in a neural network
+
+In deep learning, especially with Keras or PyTorch Lightning, you can use a **callback** to stop training early if the model stops improving — this is called **EarlyStopping**.
+
+In Keras:
+
+```python
+from tensorflow.keras.callbacks import EarlyStopping
+
+early_stop = EarlyStopping(
+    monitor='val_loss',     # Watch validation loss
+    patience=3,             # Wait 3 epochs without improvement
+    restore_best_weights=True
+)
+
+model.fit(X_train, y_train, validation_data=(X_val, y_val), callbacks=[early_stop])
+```
+
+This:
+
+* Saves training time
+* Avoids overfitting
+* Restores the best weights before validation loss started increasing
+
+You can also monitor **accuracy**, **F1**, or **custom metrics**. Other useful callbacks include `ReduceLROnPlateau`, `ModelCheckpoint`, and `TensorBoard`.
+
+
+---
+
+### How do you evaluate RAG output?
+
+**RAG (Retrieval-Augmented Generation)** combines retrieval (e.g., from a vector DB) with generative models (e.g., LLMs). Evaluating it involves **two key components**:
+
+1. **Retrieval Quality**:
+
+   * 📌 **Precision\@k** or **Recall\@k**: Do the top-k retrieved documents contain the relevant information?
+   * 🧠 **Embedding similarity** between question and retrieved chunks
+   * ✅ **Human judgment**: Are the retrieved docs contextually relevant?
+
+2. **Generation Quality**:
+
+   * **Factual correctness**: Is the answer grounded in the retrieved content? You can use:
+
+     * 🔍 **Faithfulness metrics** like **QAG (Question-Answer Generation)** or **FEVER score**
+     * 📚 Compare with **reference answers** using:
+
+       * **ROUGE** (recall-focused), **BLEU** (precision), **BERTScore** (semantic)
+   * **Answer coverage**: Did the model answer the entire question?
+   * **Conciseness** and **fluency**
+
+3. **Holistic Metrics** (emerging):
+
+   * **Ragas**: Combines retrieval relevance, answer faithfulness, and fluency
+   * **TruLens**, **G-Eval**, and other LLM-based evaluation tools are also used
+
+So, RAG evaluation is multi-dimensional and can’t be fully captured by traditional metrics alone. Human + automated evaluation is often necessary.
+
+---
+
+### How to evaluate text summarization using LLMs
+
+There are two main types of summarization:
+
+* **Extractive**: Picking key sentences
+* **Abstractive**: Generating new phrasings
+
+#### 🔍 Common evaluation metrics:
+
+1. **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)**
+
+   * Measures n-gram overlap with reference summaries
+   * ROUGE-1, ROUGE-2 (unigram, bigram), ROUGE-L (longest common subsequence)
+
+2. **BLEU** (usually for translation, but still used)
+
+3. **BERTScore**
+
+   * Uses BERT embeddings to compare semantic similarity
+   * Better for **abstractive summaries**
+
+4. **LLM-as-a-judge**: Use GPT or similar to evaluate based on:
+
+   * **Relevance**: Does it capture all key points?
+   * **Factual consistency**: Any hallucinations?
+   * **Fluency**: Is it readable and coherent?
+
+#### 🧠 Advanced metrics:
+
+* **QAGS**: Ask factual questions about the summary and see if it answers correctly.
+* **SummaC**: Measures factual consistency by comparing entailment between source and summary.
+
+#### 🚨 Note:
+
+* ROUGE doesn't capture meaning well for abstractive summaries.
+* So pair automatic metrics with **manual or LLM-based evaluation** for high-stakes tasks.
+
+---
+
+### Explain PEFT (Parameter-Efficient Fine-Tuning)
+
+**PEFT** refers to techniques that fine-tune **only a small subset of a large model's parameters**, rather than the whole thing. This reduces **compute cost**, **memory usage**, and **storage**, while still achieving near full fine-tuning performance.
+
+The most common PEFT method is **LoRA (Low-Rank Adaptation)**:
+
+* Instead of updating full weight matrices, LoRA inserts **small trainable rank-decomposition matrices**.
+* Only a few million parameters are trained, while the base model remains frozen.
+* These modifications are merged at inference time.
+
+Other PEFT methods:
+
+* **Prefix Tuning**: Learn a trainable prefix of key/value vectors in attention layers.
+* **Adapter Layers**: Add small feed-forward layers between transformer layers.
+* **BitFit**: Only fine-tune bias terms.
+
+#### ✅ Why use PEFT?
+
+* 🚀 Finetune billion-parameter models on consumer hardware
+* 🔄 Reuse the same base model for many tasks (just switch adapters)
+* 🧪 Enables fast experimentation and deployment
+
+**Popular in**: LLM adaptation (e.g., QLoRA), multi-task learning, edge deployment.
+
+

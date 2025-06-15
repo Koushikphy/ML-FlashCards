@@ -13,7 +13,7 @@ A p-value tells you the **probability of observing your data** (or something mor
 
 
 
-#### Explanation of p-value Statsmodels Regression Coefficients
+#### Explanation of p-value in context of Statsmodels Regression Coefficients
 
 When you run a regression using `statsmodels` (like OLS), it estimates coefficients for your predictor variables (X), and for each coefficient, it reports: (i) Estimate of the coefficient, (ii) Standard error and (iii) p-value.
 
