@@ -43,9 +43,6 @@ Train-test split should be done *before* feature engineering.
 
 **Exception**: In cross-validation pipelines, tools like `sklearn`'s `Pipeline` ensure transformations are applied correctly, even if the split seems to come later in code.
 
----
-
-Excellent set of in-depth questions. Here's how I would answer each of them in a professional, interview-style format.
 
 ---
 
@@ -417,9 +414,9 @@ These are classic **feature evaluation and selection tools**, especially in cred
 
 * **Weight of Evidence (WoE)**: Converts categorical or binned numerical features into continuous values by comparing proportions of good vs bad outcomes:
 
-  $$
-  \text{WoE} = \log\left(\frac{\text{\% of Goods in bin}}{\text{\% of Bads in bin}}\right)
-  $$
+$$
+\text{WoE} = \log\left(\frac{\text{\% of Goods in bin}}{\text{\% of Bads in bin}}\right)
+$$
 
   Makes variables more linear and model-friendly.
 
@@ -431,18 +428,18 @@ These are classic **feature evaluation and selection tools**, especially in cred
   * IV 0.1–0.3: Medium predictive
   * IV > 0.3: Strong predictive
 
-  $$
-  IV_i = (\text{\% of Goods in bin} - \text{\% of Bads in bin}) \times WoE_i\\
+$$
+IV_i = (\text{\% of Goods in bin} - \text{\% of Bads in bin}) \times WoE_i\\
 
-  IV = \sum IV_i
-  $$
+IV = \sum IV_i
+$$
 
 
 * **Variance Inflation Factor (VIF)**: Measures multicollinearity in regression. VIF > 5 or 10 indicates high collinearity.
 
-  $$
-  \text{VIF}_i = \frac{1}{1 - R_i^2}
-  $$
+$$
+\text{VIF}_i = \frac{1}{1 - R_i^2}
+$$
 
   High VIF can inflate standard errors and make model unstable.
 
@@ -454,17 +451,17 @@ Both are used in decision trees to measure **node impurity**, i.e., how mixed th
 
 * **Gini Impurity**:
 
-  $$
-  G = 1 - \sum p_i^2
-  $$
+$$
+G = 1 - \sum p_i^2
+$$
 
   Measures the probability that a randomly chosen sample would be incorrectly classified if randomly labeled according to the class distribution. It’s faster to compute and often used in CART.
 
 * **Entropy**:
 
-  $$
-  H = -\sum p_i \log_2 p_i
-  $$
+$$
+H = -\sum p_i \log_2 p_i
+$$
 
   Comes from information theory. Measures average information (or surprise) required to identify class labels.
 
@@ -656,98 +653,3 @@ You can also monitor **accuracy**, **F1**, or **custom metrics**. Other useful c
 
 
 ---
-
-### How do you evaluate RAG output?
-
-**RAG (Retrieval-Augmented Generation)** combines retrieval (e.g., from a vector DB) with generative models (e.g., LLMs). Evaluating it involves **two key components**:
-
-1. **Retrieval Quality**:
-
-   * 📌 **Precision\@k** or **Recall\@k**: Do the top-k retrieved documents contain the relevant information?
-   * 🧠 **Embedding similarity** between question and retrieved chunks
-   * ✅ **Human judgment**: Are the retrieved docs contextually relevant?
-
-2. **Generation Quality**:
-
-   * **Factual correctness**: Is the answer grounded in the retrieved content? You can use:
-
-     * 🔍 **Faithfulness metrics** like **QAG (Question-Answer Generation)** or **FEVER score**
-     * 📚 Compare with **reference answers** using:
-
-       * **ROUGE** (recall-focused), **BLEU** (precision), **BERTScore** (semantic)
-   * **Answer coverage**: Did the model answer the entire question?
-   * **Conciseness** and **fluency**
-
-3. **Holistic Metrics** (emerging):
-
-   * **Ragas**: Combines retrieval relevance, answer faithfulness, and fluency
-   * **TruLens**, **G-Eval**, and other LLM-based evaluation tools are also used
-
-So, RAG evaluation is multi-dimensional and can’t be fully captured by traditional metrics alone. Human + automated evaluation is often necessary.
-
----
-
-### How to evaluate text summarization using LLMs
-
-There are two main types of summarization:
-
-* **Extractive**: Picking key sentences
-* **Abstractive**: Generating new phrasings
-
-#### 🔍 Common evaluation metrics:
-
-1. **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)**
-
-   * Measures n-gram overlap with reference summaries
-   * ROUGE-1, ROUGE-2 (unigram, bigram), ROUGE-L (longest common subsequence)
-
-2. **BLEU** (usually for translation, but still used)
-
-3. **BERTScore**
-
-   * Uses BERT embeddings to compare semantic similarity
-   * Better for **abstractive summaries**
-
-4. **LLM-as-a-judge**: Use GPT or similar to evaluate based on:
-
-   * **Relevance**: Does it capture all key points?
-   * **Factual consistency**: Any hallucinations?
-   * **Fluency**: Is it readable and coherent?
-
-#### 🧠 Advanced metrics:
-
-* **QAGS**: Ask factual questions about the summary and see if it answers correctly.
-* **SummaC**: Measures factual consistency by comparing entailment between source and summary.
-
-#### 🚨 Note:
-
-* ROUGE doesn't capture meaning well for abstractive summaries.
-* So pair automatic metrics with **manual or LLM-based evaluation** for high-stakes tasks.
-
----
-
-### Explain PEFT (Parameter-Efficient Fine-Tuning)
-
-**PEFT** refers to techniques that fine-tune **only a small subset of a large model's parameters**, rather than the whole thing. This reduces **compute cost**, **memory usage**, and **storage**, while still achieving near full fine-tuning performance.
-
-The most common PEFT method is **LoRA (Low-Rank Adaptation)**:
-
-* Instead of updating full weight matrices, LoRA inserts **small trainable rank-decomposition matrices**.
-* Only a few million parameters are trained, while the base model remains frozen.
-* These modifications are merged at inference time.
-
-Other PEFT methods:
-
-* **Prefix Tuning**: Learn a trainable prefix of key/value vectors in attention layers.
-* **Adapter Layers**: Add small feed-forward layers between transformer layers.
-* **BitFit**: Only fine-tune bias terms.
-
-#### ✅ Why use PEFT?
-
-* 🚀 Finetune billion-parameter models on consumer hardware
-* 🔄 Reuse the same base model for many tasks (just switch adapters)
-* 🧪 Enables fast experimentation and deployment
-
-**Popular in**: LLM adaptation (e.g., QLoRA), multi-task learning, edge deployment.
-
-

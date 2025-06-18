@@ -333,7 +333,7 @@ Precision and recall can be perfectly separable when the data is perfectly separ
 - If **false negatives are unacceptable** (e.g., missing of a deadly disease, missing a faulty product), then **Recall** or **F1 Score** is preferred.
 
 
-![Confusion Matrix](./assets/images/confusionMatrxiUpdated.jpg)
+![Confusion Matrix](../assets/images/confusionMatrxiUpdated.jpg)
 
 ## ROC Curve & AUC
 

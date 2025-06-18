@@ -66,7 +66,7 @@ So, the p-value is **not** the probability that the null hypothesis is true — 
 | Large   | This result is **common** if the coefficient is truly 0 | Fail to reject H₀ → No strong evidence      |
 
 
-
+---
 
 ## T-Test
 
@@ -95,31 +95,28 @@ You want to know if the average test score of class A is different from class B.
 | ------- | ----------------------- | ----------------------------------- | --------------------------------------- |
 | t-test  | Means (2 groups)        | Small sample, σ unknown             | Normality, equal variance (in 2-sample) |
 
+#### a) **One-sample t-test**:
 
----
+$$
+t = \frac{\bar{x} - \mu}{s / \sqrt{n}}
+$$
 
-## F-Test
+* $\bar{x}$: Sample mean
+* $\mu$: Population mean (hypothesized)
+* $s$: Sample standard deviation
+* $n$: Sample size
 
-#### Purpose:
+#### b) **Two-sample t-test (independent samples, equal variances)**:
 
-Used to **compare variances** between **two or more groups**. Often used in **ANOVA** (Analysis of Variance).
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}
+$$
 
-#### Example:
+Where the **pooled standard deviation** $s_p$ is:
 
-You want to test if three different teaching methods lead to different student performance. Use ANOVA (which uses F-test internally) to test if group variances differ.
-
-#### Conditions:
-
-* Data should be normally distributed.
-* Independent observations.
-* Groups have similar variances (homogeneity of variance).
-
-
-| Test    | Compares                | Use When                            | Key Assumptions                         |
-| ------- | ----------------------- | ----------------------------------- | --------------------------------------- |
-| F-test  | Variances               | Comparing 2+ group variances        | Normality, independence                 |
-
-
+$$
+s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}
+$$
 
 ---
 
@@ -145,6 +142,54 @@ You want to compare the average height of a sample to the population height, and
 | p-value | Not a test but a result | Used to interpret test significance | Depends on the test used                |
 
 
+
+#### a) **One-sample z-test**:
+
+$$
+z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}
+$$
+
+* $\sigma$: Population standard deviation
+
+#### b) **Two-sample z-test (independent samples)**:
+
+$$
+z = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}
+$$
+
+* $\sigma_1^2$, $\sigma_2^2$: Population variances of the two samples
+
+
+---
+
+## F-Test
+
+#### Purpose:
+
+Used to **compare variances** between **two or more groups**. Often used in **ANOVA** (Analysis of Variance).
+
+#### Example:
+
+You want to test if three different teaching methods lead to different student performance. Use ANOVA (which uses F-test internally) to test if group variances differ.
+
+#### Conditions:
+
+* Data should be normally distributed.
+* Independent observations.
+* Groups have similar variances (homogeneity of variance).
+
+
+| Test    | Compares                | Use When                            | Key Assumptions                         |
+| ------- | ----------------------- | ----------------------------------- | --------------------------------------- |
+| F-test  | Variances               | Comparing 2+ group variances        | Normality, independence                 |
+
+$$
+F = \frac{s_1^2}{s_2^2}
+$$
+
+* $s_1^2$: Variance of sample 1
+* $s_2^2$: Variance of sample 2
+  (*By convention, $s_1^2$ is usually the larger variance to ensure $F \geq 1$*)
 
 ---
 

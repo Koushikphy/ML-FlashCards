@@ -1082,5 +1082,99 @@ Would you like a code example showing how to build a RAG pipeline with a vector 
 
 ---
 
-LORA
+
+
+### How do you evaluate RAG output?
+
+**RAG (Retrieval-Augmented Generation)** combines retrieval (e.g., from a vector DB) with generative models (e.g., LLMs). Evaluating it involves **two key components**:
+
+1. **Retrieval Quality**:
+
+   * 📌 **Precision\@k** or **Recall\@k**: Do the top-k retrieved documents contain the relevant information?
+   * 🧠 **Embedding similarity** between question and retrieved chunks
+   * ✅ **Human judgment**: Are the retrieved docs contextually relevant?
+
+2. **Generation Quality**:
+
+   * **Factual correctness**: Is the answer grounded in the retrieved content? You can use:
+
+     * 🔍 **Faithfulness metrics** like **QAG (Question-Answer Generation)** or **FEVER score**
+     * 📚 Compare with **reference answers** using:
+
+       * **ROUGE** (recall-focused), **BLEU** (precision), **BERTScore** (semantic)
+   * **Answer coverage**: Did the model answer the entire question?
+   * **Conciseness** and **fluency**
+
+3. **Holistic Metrics** (emerging):
+
+   * **Ragas**: Combines retrieval relevance, answer faithfulness, and fluency
+   * **TruLens**, **G-Eval**, and other LLM-based evaluation tools are also used
+
+So, RAG evaluation is multi-dimensional and can’t be fully captured by traditional metrics alone. Human + automated evaluation is often necessary.
+
+---
+
+### How to evaluate text summarization using LLMs
+
+There are two main types of summarization:
+
+* **Extractive**: Picking key sentences
+* **Abstractive**: Generating new phrasings
+
+#### 🔍 Common evaluation metrics:
+
+1. **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)**
+
+   * Measures n-gram overlap with reference summaries
+   * ROUGE-1, ROUGE-2 (unigram, bigram), ROUGE-L (longest common subsequence)
+
+2. **BLEU** (usually for translation, but still used)
+
+3. **BERTScore**
+
+   * Uses BERT embeddings to compare semantic similarity
+   * Better for **abstractive summaries**
+
+4. **LLM-as-a-judge**: Use GPT or similar to evaluate based on:
+
+   * **Relevance**: Does it capture all key points?
+   * **Factual consistency**: Any hallucinations?
+   * **Fluency**: Is it readable and coherent?
+
+#### 🧠 Advanced metrics:
+
+* **QAGS**: Ask factual questions about the summary and see if it answers correctly.
+* **SummaC**: Measures factual consistency by comparing entailment between source and summary.
+
+#### 🚨 Note:
+
+* ROUGE doesn't capture meaning well for abstractive summaries.
+* So pair automatic metrics with **manual or LLM-based evaluation** for high-stakes tasks.
+
+---
+
+### Explain PEFT (Parameter-Efficient Fine-Tuning)
+
+**PEFT** refers to techniques that fine-tune **only a small subset of a large model's parameters**, rather than the whole thing. This reduces **compute cost**, **memory usage**, and **storage**, while still achieving near full fine-tuning performance.
+
+The most common PEFT method is **LoRA (Low-Rank Adaptation)**:
+
+* Instead of updating full weight matrices, LoRA inserts **small trainable rank-decomposition matrices**.
+* Only a few million parameters are trained, while the base model remains frozen.
+* These modifications are merged at inference time.
+
+Other PEFT methods:
+
+* **Prefix Tuning**: Learn a trainable prefix of key/value vectors in attention layers.
+* **Adapter Layers**: Add small feed-forward layers between transformer layers.
+* **BitFit**: Only fine-tune bias terms.
+
+#### ✅ Why use PEFT?
+
+* 🚀 Finetune billion-parameter models on consumer hardware
+* 🔄 Reuse the same base model for many tasks (just switch adapters)
+* 🧪 Enables fast experimentation and deployment
+
+**Popular in**: LLM adaptation (e.g., QLoRA), multi-task learning, edge deployment.
+
 
