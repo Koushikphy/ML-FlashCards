@@ -108,7 +108,7 @@ $$
 
 where $\{t_i\}$ is a partition of $[0, t]$, and $|\Delta|$ is the mesh (maximum width) of the partition.
 
----
+
 
 ### 📌 **Quadratic Variation of Standard Brownian Motion**
 
@@ -120,7 +120,7 @@ $$
 
 This means the quadratic variation of Brownian motion **increases linearly** with time, even though Brownian paths are continuous and nowhere differentiable.
 
----
+
 
 ### 🔍 **Why Is This Important?**
 
@@ -131,7 +131,7 @@ This means the quadratic variation of Brownian motion **increases linearly** wit
    Quadratic variation is fundamental to **Ito’s lemma**. For example, the differential of $W_t^2$ is:
 
 $$
-   d(W_t^2) = 2W_t\,dW_t + dt
+   d(W_t^2) = 2W_t dW_t + dt
 $$
 
    That extra $dt$ term comes from the **quadratic variation**: $(dW_t)^2 = dt$, which is **non-zero**, unlike in classical calculus.
@@ -139,13 +139,13 @@ $$
 3. **Helps Identify Brownian Motion**
    A continuous martingale $M_t$ with $[M]_t = t$ can often be shown to be Brownian motion via Lévy’s characterization.
 
----
+
 
 ### 🧠 **Intuition**
 
 Even though the average displacement of Brownian motion is zero, the **accumulated "wiggliness"** (squared displacements) grows steadily — that's what quadratic variation captures.
 
----
+
 
 In short, **quadratic variation measures the accumulated volatility or randomness** of a process — and for Brownian motion, it grows linearly with time:
 
@@ -158,14 +158,14 @@ $$
 
 ## Derive **Ito's Lemma** for a function $f(t, X_t)$, where $X_t$ is an **Itô process**.
 
----
+
 
 ### 🔷 **Step 1: Define the Itô Process**
 
 Let $X_t$ be defined as:
 
 $$
-dX_t = \mu(t, X_t)\,dt + \sigma(t, X_t)\,dW_t
+dX_t = \mu(t, X_t) dt + \sigma(t, X_t) dW_t
 $$
 
 Where:
@@ -174,7 +174,7 @@ Where:
 * $\sigma(t, X_t)$: diffusion term
 * $W_t$: standard Brownian motion
 
----
+
 
 ### 🔷 **Step 2: Goal – Find $df(t, X_t)$**
 
@@ -184,7 +184,7 @@ $$
 f: \mathbb{R}^+ \times \mathbb{R} \to \mathbb{R}
 $$
 
----
+
 
 ### 🔷 **Step 3: Use Multivariate Taylor Expansion (Stochastic Version)**
 
@@ -194,23 +194,23 @@ $$
 df(t, X_t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dX_t + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} (dX_t)^2
 $$
 
-Now plug in $dX_t = \mu\,dt + \sigma\,dW_t$:
+Now plug in $dX_t = \mu dt + \sigma dW_t$:
 
-* $dX_t = \mu\,dt + \sigma\,dW_t$
-* $(dX_t)^2 = \sigma^2\,dt$ since $(dW_t)^2 = dt$, and cross terms like $dt \cdot dW_t$ vanish in Itô calculus
+* $dX_t = \mu dt + \sigma dW_t$
+* $(dX_t)^2 = \sigma^2 dt$ since $(dW_t)^2 = dt$, and cross terms like $dt \cdot dW_t$ vanish in Itô calculus
 
----
+
 
 ### 🔷 **Step 4: Substitute and Simplify**
 
 $$
 \begin{aligned}
-df(t, X_t) &= \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} (\mu\,dt + \sigma\,dW_t) + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} \sigma^2 dt \\
+df(t, X_t) &= \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} (\mu dt + \sigma dW_t) + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} \sigma^2 dt \\
 &= \left( \frac{\partial f}{\partial t} + \mu \frac{\partial f}{\partial x} + \frac{1}{2} \sigma^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma \frac{\partial f}{\partial x} dW_t
 \end{aligned}
 $$
 
----
+
 
 ### ✅ **Final Result — Itô's Lemma:**
 
@@ -222,7 +222,7 @@ $$
 
 This is the **single-variable version** of Itô’s Lemma.
 
----
+
 
 ### 📌 **Applications:**
 
@@ -230,7 +230,7 @@ This is the **single-variable version** of Itô’s Lemma.
 * Foundation for solving stochastic differential equations (SDEs)
 * Allows transformation of stochastic processes through functions (change of variables)
 
-
+---
 
 ## Apply Ito’s Lemma to $\ln(S_t)$ where $dS_t = \mu S_t dt + \sigma S_t dW_t$.
 
@@ -244,10 +244,10 @@ $$
 Where $S_t$ follows a **geometric Brownian motion**:
 
 $$
-dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+dS_t = \mu S_t   dt + \sigma S_t   dW_t
 $$
 
----
+
 
 ### 🔷 Step 1: Identify the components
 
@@ -262,7 +262,7 @@ Compute the derivatives of $f(S_t)$:
 * $f'(S_t) = \frac{1}{S_t}$
 * $f''(S_t) = -\frac{1}{S_t^2}$
 
----
+
 
 ### 🔷 Step 2: Use Itô’s Lemma for functions of one variable:
 
@@ -276,52 +276,52 @@ $$
 d\ln(S_t) = \left( \mu S_t \cdot \frac{1}{S_t} + \frac{1}{2} \sigma^2 S_t^2 \cdot \left(-\frac{1}{S_t^2}\right) \right) dt + \sigma S_t \cdot \frac{1}{S_t} dW_t
 $$
 
----
+
 
 ### 🔷 Step 3: Simplify terms
 
 $$
-d\ln(S_t) = \left( \mu - \frac{1}{2} \sigma^2 \right) dt + \sigma \, dW_t
+d\ln(S_t) = \left( \mu - \frac{1}{2} \sigma^2 \right) dt + \sigma   dW_t
 $$
 
----
+
 
 ### ✅ **Final Result:**
 
 $$
-\boxed{d\ln(S_t) = \left( \mu - \frac{1}{2} \sigma^2 \right) dt + \sigma \, dW_t}
+\boxed{d\ln(S_t) = \left( \mu - \frac{1}{2} \sigma^2 \right) dt + \sigma   dW_t}
 $$
 
----
+
 
 ### 🔍 Interpretation:
 
 * The **logarithmic return** $\ln(S_t)$ follows a linear Brownian motion with drift $\mu - \frac{1}{2}\sigma^2$ and volatility $\sigma$.
 * This is why **log returns of GBM are normally distributed**, a key assumption in the Black-Scholes model.
 
-Let me know if you’d like the full integration of this SDE next.
 
 
 ---
 
+## Explain the difference between Ito and Stratonovich integrals.
 
 The **Itô and Stratonovich integrals** are two different ways to define integrals with respect to **stochastic processes**, particularly Brownian motion. Though they may look similar, they yield different results and have different mathematical properties and interpretations.
 
----
+
 
 ## ✅ **1. Setup: Stochastic Integral**
 
 We want to define an integral of the form:
 
 $$
-\int_0^t f(X_s) \, dW_s
+\int_0^t f(X_s)   dW_s
 $$
 
 Where $W_s$ is Brownian motion and $f(X_s)$ is some adapted (random) process. The question is: **how do we define the value of the integrand inside each time increment?**
 
----
 
-## Explain the difference between Ito and Stratonovich integrals.
+
+
 ### 🔹 **2. Itô Integral**
 
 ### **Definition:**
@@ -329,7 +329,7 @@ Where $W_s$ is Brownian motion and $f(X_s)$ is some adapted (random) process. Th
 In the **Itô integral**, the integrand is evaluated at the **left endpoint** of each subinterval:
 
 $$
-\int_0^t f(X_s) \, dW_s \quad \text{(Itô)} \quad \approx \sum f(X_{t_i}) \cdot (W_{t_{i+1}} - W_{t_i})
+\int_0^t f(X_s)   dW_s \quad \text{(Itô)} \quad \approx \sum f(X_{t_i}) \cdot (W_{t_{i+1}} - W_{t_i})
 $$
 
 ### **Key Properties:**
@@ -375,12 +375,12 @@ Here, the $\circ dW_s$ notation indicates the **Stratonovich** integral.
 They are related by:
 
 $$
-\int_0^t f(X_s) \circ dW_s = \int_0^t f(X_s) \, dW_s + \frac{1}{2} \int_0^t f'(X_s) \sigma(X_s) \, ds
+\int_0^t f(X_s) \circ dW_s = \int_0^t f(X_s)   dW_s + \frac{1}{2} \int_0^t f'(X_s) \sigma(X_s)   ds
 $$
 
 That extra term accounts for the difference due to the **midpoint vs. left-point evaluation**.
 
----
+
 
 ### 🎯 Summary Table:
 
@@ -401,7 +401,7 @@ That extra term accounts for the difference due to the **midpoint vs. left-point
 We are given the **stochastic differential equation (SDE)**:
 
 $$
-dX_t = \mu X_t\, dt + \sigma X_t\, dW_t,
+dX_t = \mu X_t  dt + \sigma X_t  dW_t,
 $$
 
 where:
@@ -411,7 +411,7 @@ where:
 * $W_t$ is a **standard Brownian motion**,
 * $X_t$ is the unknown stochastic process.
 
----
+
 
 ### Step 1: Recognize the SDE Type
 
@@ -419,7 +419,7 @@ This is a **geometric Brownian motion (GBM)**, commonly used in financial modeli
 
 It is a **linear SDE**, and we can solve it using **Itô's Lemma** (or method of integrating factors).
 
----
+
 
 ### Step 2: Solve via Itô's Lemma
 
@@ -438,13 +438,13 @@ $$
 From the SDE:
 
 $$
-dX_t = \mu X_t\, dt + \sigma X_t\, dW_t,
+dX_t = \mu X_t  dt + \sigma X_t  dW_t,
 $$
 
 so,
 
 $$
-(dX_t)^2 = (\sigma X_t)^2 (dW_t)^2 = \sigma^2 X_t^2\, dt,
+(dX_t)^2 = (\sigma X_t)^2 (dW_t)^2 = \sigma^2 X_t^2  dt,
 $$
 
 since $(dW_t)^2 = dt$.
@@ -452,18 +452,18 @@ since $(dW_t)^2 = dt$.
 Substitute into Itô’s Lemma:
 
 $$
-dY_t = \frac{1}{X_t}(\mu X_t\, dt + \sigma X_t\, dW_t) - \frac{1}{2} \frac{1}{X_t^2} (\sigma^2 X_t^2\, dt),
+dY_t = \frac{1}{X_t}(\mu X_t  dt + \sigma X_t  dW_t) - \frac{1}{2} \frac{1}{X_t^2} (\sigma^2 X_t^2  dt),
 $$
 
 $$
-dY_t = \mu\, dt + \sigma\, dW_t - \frac{1}{2} \sigma^2\, dt,
+dY_t = \mu  dt + \sigma  dW_t - \frac{1}{2} \sigma^2  dt,
 $$
 
 $$
-\boxed{dY_t = \left(\mu - \frac{1}{2} \sigma^2 \right) dt + \sigma\, dW_t}.
+\boxed{dY_t = \left(\mu - \frac{1}{2} \sigma^2 \right) dt + \sigma  dW_t}.
 $$
 
----
+
 
 ### Step 3: Integrate the SDE for $Y_t$
 
@@ -489,7 +489,7 @@ $$
 \boxed{X_t = X_0 \exp\left( \left(\mu - \frac{1}{2} \sigma^2 \right)t + \sigma W_t \right)}.
 $$
 
----
+
 
 ### ✅ Final Solution
 
@@ -497,7 +497,7 @@ $$
 \boxed{X_t = X_0 \exp\left( \left(\mu - \frac{1}{2} \sigma^2 \right)t + \sigma W_t \right)}
 $$
 
-This is the unique strong solution of the SDE $dX_t = \mu X_t\, dt + \sigma X_t\, dW_t$.
+This is the unique strong solution of the SDE $dX_t = \mu X_t  dt + \sigma X_t  dW_t$.
 
 
 ---
@@ -506,12 +506,12 @@ This is the unique strong solution of the SDE $dX_t = \mu X_t\, dt + \sigma X_t\
 
 To simulate a stochastic differential equation (SDE) numerically, we discretize the continuous-time process using methods like **Euler–Maruyama** or **Milstein**. These methods approximate the solution by stepping through time in small increments and estimating the stochastic process’s evolution.
 
----
+
 
 ## 🎯 General SDE Form
 
 $$
-dX_t = a(X_t, t)\, dt + b(X_t, t)\, dW_t,
+dX_t = a(X_t, t)  dt + b(X_t, t)  dW_t,
 $$
 
 where:
@@ -523,7 +523,7 @@ where:
 
 We want to approximate $X_t$ at discrete times $t_0, t_1, ..., t_N$ with step size $\Delta t = t_{n+1} - t_n$.
 
----
+
 
 ## 1. **Euler–Maruyama Method**
 
@@ -545,7 +545,7 @@ where:
 * Converges weakly with order 1 and strongly with order 0.5.
 * Good for qualitative understanding but less accurate for precise simulations.
 
----
+
 
 ## 2. **Milstein Method**
 
@@ -567,7 +567,7 @@ where:
 * More accurate than Euler–Maruyama when the diffusion term is nonlinear.
 * Requires computing $b'$, which might be complex for some models.
 
----
+
 
 ## 🔁 Simulation Steps (for both methods)
 
@@ -576,7 +576,7 @@ where:
 3. Iterate the chosen method (Euler–Maruyama or Milstein) for $n = 0, 1, ..., N-1$.
 4. Record $X_n$ at each step.
 
----
+
 
 ## 🔍 Example: Simulating Geometric Brownian Motion
 
@@ -586,15 +586,15 @@ $$
 
 * **Euler–Maruyama**:
 
-  $$
+$$
   X_{n+1} = X_n + \mu X_n \Delta t + \sigma X_n \Delta W_n.
-  $$
+$$
 
 * **Milstein**:
 
-  $$
+$$
   X_{n+1} = X_n + \mu X_n \Delta t + \sigma X_n \Delta W_n + \frac{1}{2} \sigma^2 X_n \left((\Delta W_n)^2 - \Delta t\right).
-  $$
+$$
 
 In this case, $b(X) = \sigma X \Rightarrow b'(X) = \sigma$.
 
@@ -607,7 +607,6 @@ In this case, $b(X) = \sigma X \Rightarrow b'(X) = \sigma$.
 | Euler–Maruyama | 0.5                | ❌                        | Basic         | Simple models, fast runs |
 | Milstein       | 1.0                | ✅                        | More accurate | Nonlinear diffusion      |
 
-Let me know if you'd like Python or MATLAB code examples for either method.
 
 Python Example:
 
@@ -679,14 +678,14 @@ plt.show()
 
 The **Fokker–Planck equation** (also known as the **forward Kolmogorov equation**) describes the **time evolution of the probability density function (PDF)** of a stochastic process governed by a **stochastic differential equation (SDE)**.
 
----
+
 
 ### 🎯 General SDE
 
 Consider the Itô SDE:
 
 $$
-dX_t = a(X_t, t)\, dt + b(X_t, t)\, dW_t,
+dX_t = a(X_t, t)  dt + b(X_t, t)  dW_t,
 $$
 
 with:
@@ -695,18 +694,16 @@ with:
 * Diffusion term $b(X_t, t)$,
 * Brownian motion $W_t$.
 
-Let $p(x, t)$ be the **probability density function** of $X_t$, i.e., $p(x, t) \, dx = \mathbb{P}(x \leq X_t \leq x + dx)$.
+Let $p(x, t)$ be the **probability density function** of $X_t$, i.e., $p(x, t)   dx = \mathbb{P}(x \leq X_t \leq x + dx)$.
 
----
+
 
 ### 🧮 Fokker–Planck Equation (Forward Kolmogorov)
 
 $$
-\boxed{
 \frac{\partial p(x, t)}{\partial t}
-= - \frac{\partial}{\partial x} \left[ a(x, t)\, p(x, t) \right]
-+ \frac{1}{2} \frac{\partial^2}{\partial x^2} \left[ b^2(x, t)\, p(x, t) \right]
-}
+= - \frac{\partial}{\partial x} \left[ a(x, t)  p(x, t) \right]
++ \frac{1}{2} \frac{\partial^2}{\partial x^2} \left[ b^2(x, t)  p(x, t) \right]
 $$
 
 ---
@@ -725,7 +722,7 @@ This partial differential equation (PDE) tells how the **distribution of the sol
 For the SDE:
 
 $$
-dX_t = \mu\, dt + \sigma\, dW_t,
+dX_t = \mu  dt + \sigma  dW_t,
 $$
 
 with constant drift $\mu$ and diffusion $\sigma$, the Fokker–Planck equation becomes:
@@ -850,7 +847,7 @@ $$
 Let $X_t$ be an Itô process:
 
 $$
-dX_t = a(t, X_t)\,dt + b(t, X_t)\,dW_t,
+dX_t = a(t, X_t) dt + b(t, X_t) dW_t,
 $$
 
 and let $f(t, X_t)$ be a smooth function. Then:
@@ -892,14 +889,14 @@ Let $f(x) = x^2$, and $X_t = W_t$, so:
 
 $$
 df(W_t) = f'(W_t) dW_t + \frac{1}{2} f''(W_t) (dW_t)^2
-= 2W_t\,dW_t + \frac{1}{2}(2)\,dt = 2W_t\,dW_t + dt.
+= 2W_t dW_t + \frac{1}{2}(2) dt = 2W_t dW_t + dt.
 $$
 
 So:
 
 $$
-d(W_t^2) = 2W_t\,dW_t + dt
-\Rightarrow d(W_t^2 - t) = 2W_t\,dW_t.
+d(W_t^2) = 2W_t dW_t + dt
+\Rightarrow d(W_t^2 - t) = 2W_t dW_t.
 $$
 
 ### Step 3: Check the drift term
@@ -907,7 +904,7 @@ $$
 The $dt$ term is **gone** in the differential of $W_t^2 - t$, so:
 
 $$
-dM_t = 2W_t\,dW_t \quad \Rightarrow \text{No drift!}
+dM_t = 2W_t dW_t \quad \Rightarrow \text{No drift!}
 $$
 
 ✅ Therefore, $M_t = W_t^2 - t$ is a **martingale**.
@@ -919,7 +916,7 @@ $$
 Try $Y_t = W_t^2$. Its Itô differential is:
 
 $$
-d(W_t^2) = 2W_t\,dW_t + dt.
+d(W_t^2) = 2W_t dW_t + dt.
 $$
 
 The drift term $dt$ is nonzero → **not a martingale**.
@@ -1127,7 +1124,7 @@ Let $(W_t)_{t \geq 0}$ be a **Brownian motion** under a probability measure $\ma
 Suppose you define a new process:
 
 $$
-\tilde{W}_t = W_t - \int_0^t \theta_s \, ds
+\tilde{W}_t = W_t - \int_0^t \theta_s   ds
 $$
 
 Then under a **new measure** $\mathbb{Q}$, defined via a Radon-Nikodym derivative, $\tilde{W}_t$ becomes a **Brownian motion**.
@@ -1147,13 +1144,13 @@ $$
 Then define the **likelihood ratio (density)**:
 
 $$
-\frac{d\mathbb{Q}}{d\mathbb{P}} = Z_T = \exp\left( -\int_0^T \theta_s\, dW_s - \frac{1}{2} \int_0^T \theta_s^2 ds \right).
+\frac{d\mathbb{Q}}{d\mathbb{P}} = Z_T = \exp\left( -\int_0^T \theta_s  dW_s - \frac{1}{2} \int_0^T \theta_s^2 ds \right).
 $$
 
 Under the new measure $\mathbb{Q}$, the process
 
 $$
-\tilde{W}_t := W_t + \int_0^t \theta_s\, ds
+\tilde{W}_t := W_t + \int_0^t \theta_s  ds
 $$
 
 is a **Brownian motion** under $\mathbb{Q}$.
