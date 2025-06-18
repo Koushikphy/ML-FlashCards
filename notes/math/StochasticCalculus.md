@@ -12,25 +12,25 @@ A standard Brownian motion $\{W_t\}_{t \geq 0}$ is a stochastic process with the
 
 1. **Initial Value**
 
-   $$
+$$
    W_0 = 0
-   $$
+$$
 
    The process starts at zero.
 
 2. **Independent Increments**
 
-   $$
+$$
    W_{t_2} - W_{t_1}, W_{t_3} - W_{t_2}, \dots \text{ are independent for } t_1 < t_2 < t_3 < \dots
-   $$
+$$
 
    This means the future evolution of the process is independent of the past.
 
 3. **Stationary and Normally Distributed Increments**
 
-   $$
+$$
    W_{t+s} - W_t \sim \mathcal{N}(0, s)
-   $$
+$$
 
    The increments are normally distributed with **mean 0** and **variance equal to the length of the time interval**.
 
@@ -38,7 +38,7 @@ A standard Brownian motion $\{W_t\}_{t \geq 0}$ is a stochastic process with the
    The sample paths $t \mapsto W_t$ are continuous almost surely (no jumps), though they are nowhere differentiable.
 
 5. **Martingale Property**
-   $\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s$ for $s \le t$, meaning Brownian motion has no drift — its best prediction at future time $t$ is just its current value $W_s$.
+$\mathbb{E}[W_t \mid \mathcal{F}_s] = W_s$ for $s \le t$, meaning Brownian motion has no drift — its best prediction at future time $t$ is just its current value $W_s$.
 
 6. **Markov Property**
    The future of the process depends only on the present, not the past: $W_t$ is a **Markov process**.
@@ -130,9 +130,9 @@ This means the quadratic variation of Brownian motion **increases linearly** wit
 2. **Used in Ito Calculus**
    Quadratic variation is fundamental to **Ito’s lemma**. For example, the differential of $W_t^2$ is:
 
-   $$
+$$
    d(W_t^2) = 2W_t\,dW_t + dt
-   $$
+$$
 
    That extra $dt$ term comes from the **quadratic variation**: $(dW_t)^2 = dt$, which is **non-zero**, unlike in classical calculus.
 
@@ -783,9 +783,9 @@ A stochastic process $(X_t)_{t \geq 0}$ adapted to a filtration $(\mathcal{F}_t)
 2. $X_t$ is adapted (you only use past and present information),
 3. For all $0 \leq s < t$,
 
-   $$
+$$
    \boxed{\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s}
-   $$
+$$
 
    — the **conditional expectation of the future value equals the current value**.
 
@@ -944,9 +944,9 @@ A **σ-algebra** $\mathcal{F}$ over a sample space $\Omega$ is a collection of s
 
 1. **The full set is included**:
 
-   $$
+$$
    \Omega \in \mathcal{F}
-   $$
+$$
 
 2. **Closed under complementation**:
    If $A \in \mathcal{F}$, then $\Omega \setminus A \in \mathcal{F}$.
@@ -954,9 +954,9 @@ A **σ-algebra** $\mathcal{F}$ over a sample space $\Omega$ is a collection of s
 3. **Closed under countable unions**:
    If $A_1, A_2, A_3, \dots \in \mathcal{F}$, then:
 
-   $$
+$$
    \bigcup_{n=1}^\infty A_n \in \mathcal{F}
-   $$
+$$
 
 > ➕ From these, it follows that it's also closed under **countable intersections** and **set differences**.
 

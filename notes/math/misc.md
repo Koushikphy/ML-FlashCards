@@ -52,9 +52,9 @@ Volatility typically refers to **the variability or spread** of changes in the t
 
 * Compute the **standard deviation** of returns over a rolling window:
 
-  $$
+$$
   \hat{\sigma}_t = \sqrt{\frac{1}{w-1} \sum_{i=t-w+1}^{t} (r_i - \bar{r})^2}
-  $$
+$$
 
   where $r_i$ are returns and $w$ is the window size.
 
@@ -62,9 +62,9 @@ Volatility typically refers to **the variability or spread** of changes in the t
 
 * Weigh recent observations more:
 
-  $$
+$$
   \hat{\sigma}_t^2 = \lambda \hat{\sigma}_{t-1}^2 + (1 - \lambda)(r_t - \mu)^2
-  $$
+$$
 
   where $\lambda \in (0,1)$.
 
@@ -72,10 +72,10 @@ Volatility typically refers to **the variability or spread** of changes in the t
 
 * Models time-varying volatility:
 
-  $$
+$$
   r_t = \epsilon_t, \quad \epsilon_t \sim N(0, \sigma_t^2) \\
   \sigma_t^2 = \alpha_0 + \alpha_1 r_{t-1}^2 + \beta_1 \sigma_{t-1}^2
-  $$
+$$
 
   * Captures **volatility clustering**.
 
@@ -83,9 +83,9 @@ Volatility typically refers to **the variability or spread** of changes in the t
 
 * For high-frequency data: sum of squared intraday returns over a day.
 
-  $$
+$$
   \text{Realized Volatility} = \sum_{i=1}^{n} r_i^2
-  $$
+$$
 
 ---
 
@@ -117,14 +117,14 @@ These methods constrain or penalize model complexity to prevent overfitting:
 
 * **L2 Regularization (Ridge)**: Penalizes large weights.
 
-  $$
+$$
   \text{Loss} + \lambda \sum_i \theta_i^2
-  $$
+$$
 * **L1 Regularization (Lasso)**: Encourages sparsity (sets some weights to zero).
 
-  $$
+$$
   \text{Loss} + \lambda \sum_i |\theta_i|
-  $$
+$$
 * **Elastic Net**: Combines L1 and L2.
 
 ### ✅ **B. Dropout (Neural Networks)**
@@ -333,14 +333,14 @@ This means:
 * In a **risk-neutral world**, all assets grow at the risk-free rate.
 * Under the **risk-neutral measure $\mathbb{Q}$**, the **discounted price** of a financial asset (e.g. option) is a **martingale**:
 
-  $$
+$$
   \mathbb{E}^\mathbb{Q} \left[ e^{-r(T - t)} S_T \mid \mathcal{F}_t \right] = S_t
-  $$
+$$
 * This allows pricing derivatives using expected future payoffs:
 
-  $$
+$$
   \text{Option price} = \mathbb{E}^\mathbb{Q} \left[ \text{Payoff} \right]
-  $$
+$$
 
 ---
 
