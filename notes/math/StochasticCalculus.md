@@ -701,9 +701,7 @@ Let $p(x, t)$ be the **probability density function** of $X_t$, i.e., $p(x, t)  
 ### 🧮 Fokker–Planck Equation (Forward Kolmogorov)
 
 $$
-\frac{\partial p(x, t)}{\partial t}
-= - \frac{\partial}{\partial x} \left[ a(x, t)  p(x, t) \right]
-+ \frac{1}{2} \frac{\partial^2}{\partial x^2} \left[ b^2(x, t)  p(x, t) \right]
+\frac{\partial p(x, t)}{\partial t} = - \frac{\partial}{\partial x} \left[ a(x, t)  p(x, t) \right] + \frac{1}{2} \frac{\partial^2}{\partial x^2} \left[ b^2(x, t)  p(x, t) \right]
 $$
 
 ---
