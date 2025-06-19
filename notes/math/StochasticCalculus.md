@@ -704,7 +704,7 @@ $$
 \frac{\partial p(x, t)}{\partial t} = - \frac{\partial}{\partial x} \left[ a(x, t)  p(x, t) \right] + \frac{1}{2} \frac{\partial^2}{\partial x^2} \left[ b^2(x, t)  p(x, t) \right]
 $$
 
----
+
 
 ### 🔁 Intuition
 
@@ -713,7 +713,7 @@ $$
 
 This partial differential equation (PDE) tells how the **distribution of the solution** to the SDE evolves over time.
 
----
+
 
 ### 📌 Special Case: Constant Coefficients
 
@@ -726,9 +726,7 @@ $$
 with constant drift $\mu$ and diffusion $\sigma$, the Fokker–Planck equation becomes:
 
 $$
-\frac{\partial p}{\partial t}
-= - \mu \frac{\partial p}{\partial x}
-+ \frac{1}{2} \sigma^2 \frac{\partial^2 p}{\partial x^2}.
+\frac{\partial p}{\partial t} = - \mu \frac{\partial p}{\partial x} + \frac{1}{2} \sigma^2 \frac{\partial^2 p}{\partial x^2}.
 $$
 
 This is a **linear convection–diffusion equation**, and its solution is a Gaussian PDF with:
@@ -770,7 +768,7 @@ A **martingale** is a fundamental concept in probability theory and stochastic p
 
 ---
 
-## 🎯 Definition: Martingale
+### 🎯 Definition: Martingale
 
 A stochastic process $(X_t)_{t \geq 0}$ adapted to a filtration $(\mathcal{F}_t)_{t \geq 0}$ is called a **martingale** if:
 
@@ -786,9 +784,9 @@ $$
 
 > 🔁 Intuition: A martingale is a "fair game" — there's no expected gain or loss over time, given the present.
 
----
 
-## ✅ Brownian Motion as a Martingale
+
+### ✅ Brownian Motion as a Martingale
 
 Let $(W_t)_{t \geq 0}$ be a **standard Brownian motion**, i.e.:
 
@@ -803,9 +801,9 @@ $$
 \mathbb{E}[W_t \mid \mathcal{F}_s] = W_s \quad \text{for } 0 \leq s < t.
 $$
 
----
 
-## 🧠 Proof Sketch
+
+### 🧠 Proof Sketch
 
 Let $s < t$. Since Brownian increments are independent of the past:
 
@@ -838,7 +836,7 @@ $$
 ---
 
 
-## verify whether a process is a martingale using Itô’s Lemma
+## Verify whether a process is a martingale using Itô’s Lemma
 
 ## 🔁 Recap: Itô's Lemma (1D Version)
 
@@ -851,22 +849,21 @@ $$
 and let $f(t, X_t)$ be a smooth function. Then:
 
 $$
-df(t, X_t) = \left( \frac{\partial f}{\partial t} + a \frac{\partial f}{\partial x} + \frac{1}{2} b^2 \frac{\partial^2 f}{\partial x^2} \right) dt
-+ b \frac{\partial f}{\partial x} dW_t.
+df(t, X_t) = \left( \frac{\partial f}{\partial t} + a \frac{\partial f}{\partial x} + \frac{1}{2} b^2 \frac{\partial^2 f}{\partial x^2} \right) dt+ b \frac{\partial f}{\partial x} dW_t.
 $$
 
----
 
-## ✅ Martingale Criterion via Itô’s Lemma
+
+### ✅ Martingale Criterion via Itô’s Lemma
 
 A process $Y_t = f(t, X_t)$ is a **martingale** if:
 
 * It is integrable,
 * Its **drift term (the dt term in Itô’s lemma) is zero**.
 
----
 
-## 📌 Example: Show that $M_t = W_t^2 - t$ is a martingale
+
+### 📌 Example: Show that $M_t = W_t^2 - t$ is a martingale
 
 ### Step 1: Define the process
 
@@ -879,7 +876,6 @@ $$
 
 We want to check whether $M_t$ is a martingale.
 
----
 
 ### Step 2: Apply Itô’s Lemma
 
@@ -907,7 +903,7 @@ $$
 
 ✅ Therefore, $M_t = W_t^2 - t$ is a **martingale**.
 
----
+
 
 ## ⚠️ Example of a Non-Martingale
 
@@ -919,7 +915,7 @@ $$
 
 The drift term $dt$ is nonzero → **not a martingale**.
 
----
+
 
 ## 🔍 Summary: How to Check a Martingale with Itô's Lemma
 
@@ -1112,7 +1108,7 @@ A stopping time is a "decision time" based only on **current and past** informat
 
 **Girsanov’s Theorem** is a cornerstone result in stochastic calculus, particularly useful in **mathematical finance**. It provides a way to **change the probability measure** so that a process with drift becomes a **martingale** under the new measure — this is key to **risk-neutral pricing**.
 
----
+
 
 ## 🎯 What Is Girsanov’s Theorem?
 

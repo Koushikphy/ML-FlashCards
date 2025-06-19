@@ -9,7 +9,7 @@ $$
 
 using the **integrating factor** method, follow these steps:
 
----
+
 
 ### 🔹 Step 1: Identify the integrating factor
 
@@ -19,7 +19,7 @@ $$
 \mu(t) = e^{\int p(t)\,dt}
 $$
 
----
+
 
 ### 🔹 Step 2: Multiply the entire differential equation by $\mu(t)$
 
@@ -41,7 +41,7 @@ $$
 \frac{d}{dt}[\mu(t)y] = \mu(t)q(t)
 $$
 
----
+
 
 ### 🔹 Step 3: Integrate both sides
 
@@ -55,7 +55,7 @@ $$
 \mu(t)y = \int \mu(t)q(t)\,dt + C
 $$
 
----
+
 
 ### 🔹 Step 4: Solve for $y(t)$
 
@@ -63,7 +63,7 @@ $$
 y(t) = \frac{1}{\mu(t)}\left( \int \mu(t)q(t)\,dt + C \right)
 $$
 
----
+
 
 ### ✅ Final Answer:
 
@@ -83,9 +83,8 @@ This is the general solution using the integrating factor method. Let me know if
 
 The **stability criteria** for a **system of linear ordinary differential equations (ODEs)** depend primarily on the **eigenvalues of the system matrix**.
 
----
 
-## ✅ System Form
+### ✅ System Form
 
 Consider the system of linear ODEs:
 
@@ -100,7 +99,7 @@ where:
 
 ---
 
-## 🔍 Stability Types
+### 🔍 Stability Types
 
 Stability refers to the behavior of solutions as $t \to \infty$, particularly near an equilibrium point (usually $\mathbf{x} = 0$).
 
@@ -144,10 +143,6 @@ The zero solution is **unstable** if:
 | All Re(λ) ≤ 0, simple zero eigenvalues      | Marginally Stable     |
 | Any Re(λ) > 0 or defective λ with Re(λ) = 0 | Unstable              |
 
----
-
-Would you like a concrete example or to see how to compute this in practice (e.g. using a 2×2 matrix)?
-
 
 
 ---
@@ -157,9 +152,9 @@ Would you like a concrete example or to see how to compute this in practice (e.g
 
 **Phase plane analysis** is a powerful graphical method used to study the qualitative behavior of **nonlinear** systems of two first-order ordinary differential equations (ODEs). It provides insight into how solutions evolve over time without needing exact solutions.
 
----
 
-## 🔹 1. **System Setup**
+
+### 🔹 1. **System Setup**
 
 We consider a system of the form:
 
@@ -172,9 +167,9 @@ $$
 
 This defines a **vector field** in the 2D **phase plane** (also called the state space), where each point $(x, y)$ has an associated velocity vector $(f(x, y), g(x, y))$.
 
----
 
-## 🔹 2. **Equilibrium (Critical) Points**
+
+### 🔹 2. **Equilibrium (Critical) Points**
 
 These are points where:
 
@@ -184,9 +179,9 @@ $$
 
 At these points, the system doesn't change in time — they are candidates for **steady states**.
 
----
 
-## 🔹 3. **Linearization Near Equilibrium Points**
+
+### 🔹 3. **Linearization Near Equilibrium Points**
 
 To understand behavior near an equilibrium $(x_0, y_0)$, we **linearize** the system using the **Jacobian matrix**:
 
@@ -207,7 +202,7 @@ $$
 
 The **type and stability** of the equilibrium is determined by the **eigenvalues of $J$**.
 
----
+
 
 ## 🔹 4. **Classification of Equilibria**
 
@@ -219,7 +214,7 @@ The **type and stability** of the equilibrium is determined by the **eigenvalues
 | Complex with Re > 0       | Spiral (unstable focus) | Unstable              |
 | Pure imaginary (Re = 0)   | Center                  | Neutrally stable      |
 
----
+
 
 ## 🔹 5. **Sketching the Phase Portrait**
 
@@ -231,7 +226,7 @@ To build the phase plane:
 * Sketch **trajectories** showing how solutions evolve over time.
 * Identify **limit cycles**, spirals, nodes, or separatrices (boundaries between behaviors).
 
----
+
 
 ## 🔹 6. **Nonlinear Behavior**
 
@@ -241,7 +236,7 @@ The linearized analysis is valid **only near equilibrium points**. For global be
 * Look for **limit cycles** (closed orbits not predicted by linearization).
 * Use **Lyapunov functions** for global stability assessment (if applicable).
 
----
+
 
 ## 🔚 Summary
 
@@ -382,15 +377,15 @@ $$
 
 To **derive the Black-Scholes Partial Differential Equation (PDE)**, we start with the assumptions of the model and apply **Ito’s Lemma** and **no-arbitrage principles**. The derivation leads to a PDE that governs the price of a European option (call or put).
 
----
+
 
 ## 🔹 Step 1: Black-Scholes Model Assumptions
 
 * The price $S(t)$ of the underlying asset follows a **geometric Brownian motion**:
 
-  $$
-  dS = \mu S\,dt + \sigma S\,dW_t
-  $$
+$$
+dS = \mu S\,dt + \sigma S\,dW_t
+$$
 
   where:
 
@@ -466,8 +461,7 @@ $$
 Then:
 
 $$
-d\Pi = \left[ \frac{\partial V}{\partial S} \mu S - \frac{\partial V}{\partial t} - \mu S \frac{\partial V}{\partial S} - \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right] dt
-= \left[ - \frac{\partial V}{\partial t} - \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right] dt
+d\Pi = \left[ \frac{\partial V}{\partial S} \mu S - \frac{\partial V}{\partial t} - \mu S \frac{\partial V}{\partial S} - \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right] dt = \left[ - \frac{\partial V}{\partial t} - \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} \right] dt
 $$
 
 ---
@@ -482,9 +476,7 @@ $$
 
 Equating with previous expression for $d\Pi$:
 
-$$
-- \frac{\partial V}{\partial t} - \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = r \left( \frac{\partial V}{\partial S} S - V \right)
-$$
+$$ - \frac{\partial V}{\partial t} - \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} = r \left( \frac{\partial V}{\partial S} S - V \right) $$
 
 Multiply both sides by $-1$:
 
@@ -557,9 +549,9 @@ These are **ODEs** in the parameter $s$, which traces out the characteristic cur
 
 1. **Solve the characteristic ODEs** to find:
 
-   $$
-   x(s), \quad y(s), \quad u(s)
-   $$
+$$
+x(s), \quad y(s), \quad u(s)
+$$
 2. **Eliminate $s$** to express $u$ in terms of $x$ and $y$.
 3. Apply **initial or boundary conditions** to find the specific solution.
 
@@ -777,17 +769,17 @@ $$
 
 * For **Forward Euler**:
 
-  $$
-  y_{n+1} = (1 + h\lambda) y_n
-  $$
+$$
+y_{n+1} = (1 + h\lambda) y_n
+$$
 
   The scheme is stable if $|1 + h\lambda| \leq 1$
 
 * For **Backward Euler**:
 
-  $$
-  y_{n+1} = \frac{y_n}{1 - h\lambda}
-  $$
+$$
+y_{n+1} = \frac{y_n}{1 - h\lambda}
+$$
 
   Always stable for $\text{Re}(\lambda) < 0$ → **A-stable**
 
@@ -799,17 +791,17 @@ For PDEs like the heat equation, a common test is the **Von Neumann stability an
 
 * For the **explicit method** for the heat equation:
 
-  $$
-  u_j^{n+1} = u_j^n + \frac{\alpha \Delta t}{\Delta x^2} (u_{j+1}^n - 2u_j^n + u_{j-1}^n)
-  $$
+$$
+u_j^{n+1} = u_j^n + \frac{\alpha \Delta t}{\Delta x^2} (u_{j+1}^n - 2u_j^n + u_{j-1}^n)
+$$
 
-  Stability requires:
+Stability requires:
 
-  $$
-  \frac{\alpha \Delta t}{\Delta x^2} \leq \frac{1}{2}
-  $$
+$$
+\frac{\alpha \Delta t}{\Delta x^2} \leq \frac{1}{2}
+$$
 
-  This is a **conditional stability** condition.
+This is a **conditional stability** condition.
 
 * **Implicit methods** (e.g., backward Euler or Crank-Nicolson) are usually **unconditionally stable**.
 

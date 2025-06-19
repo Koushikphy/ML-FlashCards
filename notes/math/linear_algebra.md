@@ -91,9 +91,9 @@ where:
 * The columns of $V$, denoted $\mathbf{v}_i$, are the **right singular vectors**.
 * Each singular value $\sigma_i$ satisfies:
 
-  $$
-  A \mathbf{v}_i = \sigma_i \mathbf{u}_i \quad \text{and} \quad A^T \mathbf{u}_i = \sigma_i \mathbf{v}_i.
-  $$
+$$
+A \mathbf{v}_i = \sigma_i \mathbf{u}_i \quad \text{and} \quad A^T \mathbf{u}_i = \sigma_i \mathbf{v}_i.
+$$
 
 ---
 
@@ -268,7 +268,7 @@ If $V$ is a subspace of $\mathbb{R}^n$, then a basis gives the “smallest possi
 The standard basis for $\mathbb{R}^3$ is:
 
 $$
-\left\{ \begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix}, \begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix}, \begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix} \right\}
+\left\\{ \begin{bmatrix}1 \\\ 0 \\\ 0\end{bmatrix}, \begin{bmatrix}0 \\\ 1 \\\ 0\end{bmatrix}, \begin{bmatrix}0 \\\ 0 \\\ 1\end{bmatrix} \right\\}
 $$
 
 Every vector in $\mathbb{R}^3$ can be uniquely written as a combination of these.
