@@ -271,6 +271,8 @@ $$
 \left\\{ \begin{bmatrix}1 \\\ 0 \\\ 0\end{bmatrix}, \begin{bmatrix}0 \\\ 1 \\\ 0\end{bmatrix}, \begin{bmatrix}0 \\\ 0 \\\ 1\end{bmatrix} \right\\}
 $$
 
+
+
 Every vector in $\mathbb{R}^3$ can be uniquely written as a combination of these.
 
 ---
@@ -399,9 +401,9 @@ This means $Q$ is an **orthogonal matrix**, and its inverse is its transpose.
 * Makes matrix operations more stable and efficient.
 * In projections: projecting $\mathbf{x}$ onto an orthonormal basis $\{ \mathbf{q}_1, \dots \}$ is just:
 
-  $$
-  \text{proj}_{\mathbf{q}_i}(\mathbf{x}) = (\mathbf{q}_i^T \mathbf{x}) \mathbf{q}_i
-  $$
+$$
+\text{proj}_{\mathbf{q}_i}(\mathbf{x}) = (\mathbf{q}_i^T \mathbf{x}) \mathbf{q}_i
+$$
 
 ### 🟦 **Applications**:
 
@@ -459,23 +461,24 @@ Given input vectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n$:
 
 1. **Start with the first vector**:
 
-   $$
-   \mathbf{q}_1 = \frac{\mathbf{v}_1}{\|\mathbf{v}_1\|}
-   $$
+$$
+\mathbf{q}_1 = \frac{\mathbf{v}_1}{\|\mathbf{v}_1\|}
+$$
 
 2. **For $i = 2$ to $n$**:
 
-   * Subtract projections of $\mathbf{v}_i$ onto all previous $\mathbf{q}_j$:
+* Subtract projections of $\mathbf{v}_i$ onto all previous $\mathbf{q}_j$:
 
-     $$
-     \mathbf{u}_i = \mathbf{v}_i - \sum_{j=1}^{i-1} \text{proj}_{\mathbf{q}_j}(\mathbf{v}_i)
-     = \mathbf{v}_i - \sum_{j=1}^{i-1} (\mathbf{q}_j^T \mathbf{v}_i)\mathbf{q}_j
-     $$
-   * Normalize:
+$$
+\mathbf{u}_i = \mathbf{v}_i - \sum_{j=1}^{i-1} \text{proj}_{\mathbf{q}_j}(\mathbf{v}_i)
+= \mathbf{v}_i - \sum_{j=1}^{i-1} (\mathbf{q}_j^T \mathbf{v}_i)\mathbf{q}_j
+$$
 
-     $$
-     \mathbf{q}_i = \frac{\mathbf{u}_i}{\|\mathbf{u}_i\|}
-     $$
+* Normalize:
+
+$$
+\mathbf{q}_i = \frac{\mathbf{u}_i}{\|\mathbf{u}_i\|}
+$$
 
 ---
 
@@ -535,11 +538,10 @@ $$
 ## Describe LU, QR, and Cholesky decompositions.
 
 
-Certainly! LU, QR, and Cholesky decompositions are **matrix factorization techniques** that simplify solving linear systems, inverting matrices, computing determinants, and performing numerical optimization.
+LU, QR, and Cholesky decompositions are **matrix factorization techniques** that simplify solving linear systems, inverting matrices, computing determinants, and performing numerical optimization.
 
----
 
-## 🔹 1. **LU Decomposition**
+### 🔹 1. **LU Decomposition**
 
 **LU decomposition** expresses a matrix $A$ as the product of:
 
@@ -570,7 +572,7 @@ $$
 
 ---
 
-## 🔸 2. **QR Decomposition**
+### 🔸 2. **QR Decomposition**
 
 **QR decomposition** factors a matrix $A \in \mathbb{R}^{m \times n}$ into:
 
@@ -657,8 +659,8 @@ This involves solving $n$ systems of equations (one for each column of $I$).
 1. Factor: $A = LU$
 2. For each column $i$ of the identity matrix $I$, solve:
 
-   * $L\mathbf{y} = \mathbf{e}_i$
-   * $U\mathbf{x}_i = \mathbf{y}$
+* $L\mathbf{y} = \mathbf{e}_i$
+* $U\mathbf{x}_i = \mathbf{y}$
 3. Combine all $\mathbf{x}_i$ columns to form $A^{-1}$
 
 ---
@@ -668,9 +670,9 @@ This involves solving $n$ systems of equations (one for each column of $I$).
 * Compute $A^{-1} \approx R^{-1} Q^T$ for square, full-rank $A$
 * Or use **SVD**:
 
-  $$
-  A = U \Sigma V^T \Rightarrow A^{-1} = V \Sigma^{-1} U^T
-  $$
+$$
+A = U \Sigma V^T \Rightarrow A^{-1} = V \Sigma^{-1} U^T
+$$
 
 ---
 
